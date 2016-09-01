@@ -28,7 +28,8 @@ var CaptionImage = (function () {
             "border-radius": "50%",
             width: 100,
             height: 100,
-            visibility: "hidden"
+            visibility: "hidden",
+            "z-index": 100
         })
             .click(function () {
             if (self.isEditing)
