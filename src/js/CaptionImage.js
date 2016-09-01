@@ -18,7 +18,7 @@ var CaptionImage = (function () {
         // image caption
         this.$img = $("<img/>", {
             id: "node-img-" + node.id,
-            src: "img/favicon.png"
+            src: "img/upload-image.png"
         })
             .mousedown(function (e) {
             // avoid premature canceling
@@ -44,7 +44,7 @@ var CaptionImage = (function () {
                 width: 120,
                 height: 120,
                 top: -120,
-                left: -15,
+                left: -25,
                 position: "relative"
             });
             this.$img.appendTo($node);
