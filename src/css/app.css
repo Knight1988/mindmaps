@@ -206,6 +206,7 @@ html,body {
   position: absolute;
   padding-bottom: 2px;
   font-size: 15px;
+    text-align: center;
 }
 
 .mindmap .root.node-container {

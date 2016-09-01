@@ -401,6 +401,9 @@ mindmaps.DefaultCanvasView = function() {
       "text-decoration" : font.decoration
     }).appendTo($node);
 
+    var imgCaption = new CaptionImage();
+    imgCaption.setNode($node, node);
+
     var metrics = textMetrics.getTextMetrics(node, this.zoomFactor);
     $text.css(metrics);
 
@@ -771,8 +774,6 @@ mindmaps.DefaultCanvasView = function() {
     }).mousedown(function(e) {
       // avoid premature canceling
       e.stopPropagation();
-    }).blur(function() {
-      commitText();
     }).bind(
         "input",
         function() {
@@ -813,6 +814,7 @@ mindmaps.DefaultCanvasView = function() {
       // TODO put text into span and hide()
       this.$text = $getNodeCaption(node);
       this.$cancelArea = $cancelArea;
+      this.captionImage = node.captionImage;
 
       this.text = this.$text.text();
 
@@ -820,6 +822,8 @@ mindmaps.DefaultCanvasView = function() {
         width : "auto",
         height : "auto"
       }).empty().addClass("edit");
+
+      this.captionImage.startEditMode();
 
       // jquery ui prevents blur() event from happening when dragging a
       // draggable. need this
@@ -845,6 +849,8 @@ mindmaps.DefaultCanvasView = function() {
         this.$text.removeClass("edit");
         $editor.detach();
         this.$cancelArea.unbind("mousedown.editNodeCaption");
+
+        this.captionImage.endEditMode();
         view.setNodeText(this.node, this.text);
 
         alignBranches();

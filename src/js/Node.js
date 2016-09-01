@@ -77,6 +77,7 @@ mindmaps.Node.fromObject = function(obj) {
   node.offset = mindmaps.Point.fromObject(obj.offset);
   node.foldChildren = obj.foldChildren;
   node.branchColor = obj.branchColor;
+  node.img = obj.img;
 
   // extract all children from array of objects
   obj.children.forEach(function(child) {
@@ -113,7 +114,8 @@ mindmaps.Node.prototype.toJSON = function() {
     text : this.text,
     offset : this.offset,
     foldChildren : this.foldChildren,
-    branchColor : this.branchColor,
+    branchColor: this.branchColor,
+    img: this.img,
     children : children
   };
 
