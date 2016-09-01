@@ -26,7 +26,6 @@ var CaptionImage = (function () {
         })
             .css({
             "border-radius": "50%",
-            cursor: "pointer",
             width: 100,
             height: 100,
             visibility: "hidden"
@@ -36,6 +35,18 @@ var CaptionImage = (function () {
                 _this.imageUpload.selectImage();
         });
         if (node.isRoot()) {
+            if (node.img) {
+                this.$img.attr("src", node.img);
+                this.$img.css({ visibility: "" });
+            }
+            this.$img.css({
+                width: 120,
+                height: 120,
+                top: -120,
+                left: -15,
+                position: "relative"
+            });
+            this.$img.appendTo($node);
         }
         else {
             if (node.img) {
@@ -57,10 +68,10 @@ var CaptionImage = (function () {
     CaptionImage.prototype.endEditMode = function () {
         this.isEditing = false;
         var src = this.$img.attr("src");
-        var isUploaded = src.indexOf("uploaded-img");
+        var isUploaded = src.indexOf("img/favicon.png");
         this.$img.css({
             cursor: "default",
-            visibility: isUploaded !== -1 ? "" : "hidden"
+            visibility: isUploaded === -1 ? "" : "hidden"
         });
     };
     return CaptionImage;
