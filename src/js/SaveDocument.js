@@ -130,6 +130,35 @@ mindmaps.SaveDocumentPresenter = function(eventBus, mindmapModel, view, autosave
     };
 
     /**
+    * View callback when save database button was clicked. Saves the document
+    * in the save database.
+    * 
+    * @ignore
+    */
+    view.saveDatabaseButtonClicked = function () {
+        mindmaps.Util.trackEvent("Clicks", "database-save");
+
+        var doc = mindmapModel.document.prepareSave();
+        var data = {
+            userId: 0,
+            id: doc.id,
+            title: doc.title,
+            data: doc.serialize()
+        };
+
+        MindMapServiceAPI.save(doc.id,
+            0,
+            doc.title,
+            doc.serialize(),
+            function() {
+                view.hideSaveDialog();
+            },
+            function(msg) {
+                view.showCloudError(msg);
+            });
+    };
+
+    /**
     * View callback when local storage button was clicked. Saves the document
     * in the local storage.
     * 
