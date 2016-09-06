@@ -780,3 +780,8 @@ html,body {
   font-weight: bold;
   color: gray;
 }
+
+/* Hide export & print button */
+#toolbar .menu-wrapper #button-EXPORT_COMMAND, #toolbar .menu-wrapper #button-PRINT_COMMAND {
+    display: none;
+}

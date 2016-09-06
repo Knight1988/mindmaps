@@ -36,8 +36,7 @@ module MindMapServiceAPI {
             });
     }
 
-    export function remove(doc: any, success?: (data: any) => any, error?: (msg: string) => any)
-    {
+    export function remove(doc: any, success?: (data: any) => any, error?: (msg: string) => any) {
         $.post("RemoveFromDatabase.ashx",
             { id: doc.id },
             (result: MindMapResult) => {
