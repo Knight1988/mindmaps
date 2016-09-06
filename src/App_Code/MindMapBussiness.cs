@@ -31,7 +31,15 @@ public static class MindMapBussiness
         // save to database
         try
         {
-            MindMapDataAccess.Save(new MindMapData(id, userId, title));
+            var mindMapData = new MindMapData(id, userId);
+            if (MindMapDataAccess.Exist(id))
+            {
+                MindMapDataAccess.Update(mindMapData);
+            }
+            else
+            {
+                MindMapDataAccess.Insert(mindMapData);
+            }
             return new MindMapResult(true);
         }
         catch (Exception e)
@@ -40,24 +48,23 @@ public static class MindMapBussiness
         }
     }
 
-    public static MindMapResult<MindMapData> Load(Guid id)
+    public static MindMapResult Delete(MindMapData data)
     {
+        // save to database
         try
         {
-            var data = MindMapDataAccess.Load(id);
-            // get the json data
-            var path = GetFilePath(id);
-            if (File.Exists(path))
-            {
-                data.Data = File.ReadAllText(path);
-                return new MindMapResult<MindMapData>(true, data);
-            }
+            // delete the mindmap
+            MindMapDataAccess.Delete(data.Id);
+            // delete json file
+            var path = GetFilePath(data.Id);
+            if (File.Exists(path)) File.Delete(path);
 
-            return new MindMapResult<MindMapData>(false, @"Data file are deleted.", null);
+            // fetch the list
+            return GetList(data.UserId);
         }
         catch (Exception e)
         {
-            return new MindMapResult<MindMapData>(false, e.Message);
+            return new MindMapResult(false, e.Message);
         }
     }
 
@@ -65,11 +72,33 @@ public static class MindMapBussiness
     {
         try
         {
-            return new MindMapResult<List<MindMapData>>(true, MindMapDataAccess.GetList(userId).ToList());
+            // get the mind map list
+            var datas = MindMapDataAccess.GetList(userId).Where(HasData).ToList();
+
+            // return the datas
+            return new MindMapResult<List<MindMapData>>(true, datas);
         }
         catch (Exception e)
         {
+            // return fail message
             return new MindMapResult<List<MindMapData>>(false, e.Message, null);
         }
+    }
+
+    private static bool HasData(MindMapData data)
+    {
+        // get file path
+        var path = GetFilePath(data.Id);
+
+        // get json data
+        if (File.Exists(path))
+        {
+            data.Data = File.ReadAllText(path);
+            return true;
+        }
+
+        // delete the data on error
+        Delete(data);
+        return false;
     }
 }

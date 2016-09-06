@@ -7,11 +7,10 @@ using Newtonsoft.Json;
 [JsonObject(MemberSerialization.OptIn)]
 public class MindMapData
 {
-    public MindMapData(Guid id, int userId, string title)
+    public MindMapData(Guid id, int userId)
     {
         Id = id;
         UserId = userId;
-        Title = title;
     }
 
     [JsonProperty("id")]
@@ -19,12 +18,6 @@ public class MindMapData
 
     [JsonProperty("userId")]
     public int UserId { get; set; }
-
-    [JsonProperty("title")]
-    public string Title { get; set; }
-
-    [JsonProperty("modifiedDate")]
-    public DateTime ModifiedDate { get; set; }
 
     [JsonProperty("data")]
     public string Data { get; set; }

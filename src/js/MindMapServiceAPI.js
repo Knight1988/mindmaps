@@ -28,11 +28,36 @@ var MindMapServiceAPI;
         });
     }
     MindMapServiceAPI.save = save;
-    function getlist(userId, success, error) {
-        $.post("GetList.ashx", { userId: userId }, function (result) {
+    function remove(doc, success, error) {
+        $.post("RemoveFromDatabase.ashx", { id: doc.id }, function (result) {
             if (result.success && typeof (success) === "function") {
+                var datas = [];
+                // get the document list
+                for (var i = 0; i < result.data.length; i++) {
+                    var data = result.data[i];
+                    datas.push(mindmaps.Document.fromJSON(data.data));
+                }
                 // success
-                success(result.data);
+                success(datas);
+            }
+            else {
+                // error
+                error(result.message);
+            }
+        });
+    }
+    MindMapServiceAPI.remove = remove;
+    function getlist(userId, success, error) {
+        $.post("LoadFromDatabase.ashx", { userId: userId }, function (result) {
+            if (result.success && typeof (success) === "function") {
+                var datas = [];
+                // get the document list
+                for (var i = 0; i < result.data.length; i++) {
+                    var data = result.data[i];
+                    datas.push(mindmaps.Document.fromJSON(data.data));
+                }
+                // success
+                success(datas);
             }
             else {
                 // error

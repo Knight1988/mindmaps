@@ -573,6 +573,50 @@ html,body {
   display: inline;
 }
 
+.file-dialog .db-filelist {
+  width: 100%;
+  margin: 12px 0;
+  font-size: 14px;
+}
+
+.file-dialog .db-filelist thead {
+  font-weight: bold;
+  text-align: left;
+}
+
+.file-dialog .db-filelist th {
+  padding-bottom: 4px;
+}
+
+.file-dialog .db-filelist th.title {
+  width: 50%;
+}
+
+.file-dialog .db-filelist th.modified {
+  width: 40%;
+}
+
+.file-dialog .db-filelist tbody td {
+  padding: 4px;
+}
+
+.file-dialog .db-filelist tbody tr:nth-child(odd) {
+  background-color: #E8E8E8;
+}
+
+.file-dialog .db-filelist tbody tr:hover,.file-dialog .db-filelist tbody tr:nth-child(odd):hover
+  {
+  background-color: #B9E0F5;
+}
+
+.file-dialog .db-filelist a.delete {
+  display: none;
+}
+
+.file-dialog .db-filelist tr:hover a.delete {
+  display: inline;
+}
+
 .file-dialog .autosave {
   margin-left: 20px;
 }

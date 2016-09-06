@@ -14,34 +14,53 @@ public static class MindMapDataAccess
         return new SqlConnection(ConfigurationManager.ConnectionStrings["Connection"].ConnectionString);
     }
 
-    public static void Save(MindMapData mindMapData)
+    public static void Insert(MindMapData mindMapData)
     {
         using (var connection = NewConnection())
         {
-            const string cmdText = "INSERT INTO [MindMapData] (Id, UserId, Title) VALUES (@Id, @UserId, @Title)";
+            const string cmdText = "INSERT INTO [MindMapData] (Id, UserId) VALUES (@Id, @UserId)";
             var cmd = new SqlCommand(cmdText, connection);
             cmd.Parameters.Add("@Id", SqlDbType.UniqueIdentifier).Value = mindMapData.Id;
             cmd.Parameters.Add("@UserId", SqlDbType.Int).Value = mindMapData.UserId;
-            cmd.Parameters.Add("@Title", SqlDbType.NVarChar).Value = mindMapData.Title;
             connection.Open();
             cmd.ExecuteNonQuery();
         }
     }
 
-    public static MindMapData Load(Guid id)
+    public static void Update(MindMapData mindMapData)
     {
         using (var connection = NewConnection())
         {
-            var cmdText = "SELECT Id, UserId, Data FROM [MindMapData] WHERE Id = @Id";
+            const string cmdText = "UPDATE [MindMapData] SET UserId = @UserId WHERE Id = @Id";
+            var cmd = new SqlCommand(cmdText, connection);
+            cmd.Parameters.Add("@Id", SqlDbType.UniqueIdentifier).Value = mindMapData.Id;
+            cmd.Parameters.Add("@UserId", SqlDbType.Int).Value = mindMapData.UserId;
+            connection.Open();
+            cmd.ExecuteNonQuery();
+        }
+    }
+
+    public static void Delete(Guid id)
+    {
+        using (var connection = NewConnection())
+        {
+            const string cmdText = "DELETE FROM [MindMapData] WHERE Id = @Id";
             var cmd = new SqlCommand(cmdText, connection);
             cmd.Parameters.Add("@Id", SqlDbType.UniqueIdentifier).Value = id;
             connection.Open();
-            using (var r = cmd.ExecuteReader(CommandBehavior.SingleRow))
-            {
-                return r.Read()
-                    ? new MindMapData((Guid) r["Id"], Convert.ToInt32(r["UserId"]), r["Title"].ToString())
-                    : null;
-            }
+            cmd.ExecuteNonQuery();
+        }
+    }
+
+    public static bool Exist(Guid id)
+    {
+        using (var connection = NewConnection())
+        {
+            const string cmdText = "SELECT COUNT(*) FROM [MindMapData] WHERE Id = @Id";
+            var cmd = new SqlCommand(cmdText, connection);
+            cmd.Parameters.Add("@Id", SqlDbType.UniqueIdentifier).Value = id;
+            connection.Open();
+            return Convert.ToBoolean(cmd.ExecuteScalar());
         }
     }
 
@@ -49,16 +68,15 @@ public static class MindMapDataAccess
     {
         using (var connection = NewConnection())
         {
-            const string cmdText = "SELECT Id, UserId, Data FROM [MindMapData] WHERE UserId = @UserId";
+            const string cmdText = "SELECT Id, UserId FROM [MindMapData] WHERE UserId = @UserId";
             var cmd = new SqlCommand(cmdText, connection);
             cmd.Parameters.Add("@UserId", SqlDbType.Int).Value = userId;
             connection.Open();
             using (var r = cmd.ExecuteReader())
             {
-                if (r.Read())
+                while (r.Read())
                 {
-                    var mindMapData = new MindMapData((Guid) r["Id"], Convert.ToInt32(r["UserId"]),
-                        r["Title"].ToString());
+                    var mindMapData = new MindMapData((Guid) r["Id"], Convert.ToInt32(r["UserId"]));
 
                     yield return mindMapData;
                 }
