@@ -16,6 +16,7 @@ mindmaps.ApplicationController = function() {
       commandRegistry, mindmapModel);
   var autosaveController = new mindmaps.AutoSaveController(eventBus, mindmapModel);
   var filePicker = new mindmaps.FilePicker(eventBus, mindmapModel);
+  var editController = new mindmaps.EditController(eventBus, commandRegistry);
 
   /**
    * Handles the new document command.

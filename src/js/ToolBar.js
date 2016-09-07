@@ -279,6 +279,9 @@ mindmaps.ToolBarPresenter = function(eventBus, commandRegistry, view,
   var clipboardButtons = commandsToButtons(clipboardCommands);
   view.addButtonGroup(clipboardButtons, view.alignLeft);
 
+  // edit button
+  view.addButton(commandToButton(mindmaps.EditCommand), view.alignRight);
+
   // file menu
   var fileMenu = new mindmaps.ToolBarMenu("Mind map", "ui-icon-document");
   var fileCommands = [ mindmaps.NewDocumentCommand,

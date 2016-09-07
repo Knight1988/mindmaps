@@ -299,10 +299,17 @@ mindmaps.InspectorPresenter = function(eventBus, mindmapModel, view) {
   });
 
   /**
-   * Enable controls when a document has been opened.
+   * Enable controls when click edit.
    */
-  eventBus.subscribe(mindmaps.Event.DOCUMENT_OPENED, function() {
+  eventBus.subscribe(mindmaps.Event.DOCUMENT_EDIT, function() {
     view.setControlsEnabled(true);
+  });
+
+  /**
+   * Disable controls when document opened.
+   */
+  eventBus.subscribe(mindmaps.Event.DOCUMENT_OPENED, function () {
+    view.setControlsEnabled(false);
   });
 
   /**

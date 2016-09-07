@@ -91,7 +91,7 @@ mindmaps.CanvasPresenter = function(eventBus, commandRegistry, mindmapModel,
    * @ignore
    */
   view.nodeMouseOver = function(node) {
-    if (view.isNodeDragging() || creator.isDragging()) {
+    if (view.isNodeDragging() || creator.isDragging() || !view.isEditing) {
       // dont relocate the creator if we are dragging
     } else {
       creator.attachToNode(node);
@@ -104,7 +104,7 @@ mindmaps.CanvasPresenter = function(eventBus, commandRegistry, mindmapModel,
    * @ignore
    */
   view.nodeCaptionMouseOver = function(node) {
-    if (view.isNodeDragging() || creator.isDragging()) {
+    if (view.isNodeDragging() || creator.isDragging() || !view.isEditing) {
       // dont relocate the creator if we are dragging
     } else {
       creator.attachToNode(node);
@@ -119,7 +119,7 @@ mindmaps.CanvasPresenter = function(eventBus, commandRegistry, mindmapModel,
   view.nodeMouseDown = function(node) {
     mindmapModel.selectNode(node);
     // show creator
-    creator.attachToNode(node);
+    if (view.isEditing) creator.attachToNode(node);
   };
 
   // view.nodeMouseUp = function(node) {
@@ -130,8 +130,8 @@ mindmaps.CanvasPresenter = function(eventBus, commandRegistry, mindmapModel,
    * 
    * @ignore
    */
-  view.nodeDoubleClicked = function(node) {
-    view.editNodeCaption(node);
+  view.nodeDoubleClicked = function (node) {
+      if (view.isEditing) view.editNodeCaption(node);
   };
 
   // view.nodeDragging = function() {
@@ -240,6 +240,7 @@ mindmaps.CanvasPresenter = function(eventBus, commandRegistry, mindmapModel,
     // listen to global events
     eventBus.subscribe(mindmaps.Event.DOCUMENT_OPENED, function(doc,
         newDocument) {
+        view.isEditing = false;
       showMindMap(doc);
 
       // if (doc.isNew()) {
@@ -251,6 +252,10 @@ mindmaps.CanvasPresenter = function(eventBus, commandRegistry, mindmapModel,
 
     eventBus.subscribe(mindmaps.Event.DOCUMENT_CLOSED, function(doc) {
       view.clear();
+    });
+
+    eventBus.subscribe(mindmaps.Event.DOCUMENT_EDIT, function(doc) {
+        view.isEditing = true;
     });
 
     eventBus.subscribe(mindmaps.Event.NODE_MOVED, function(node) {

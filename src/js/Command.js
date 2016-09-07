@@ -322,6 +322,22 @@ mindmaps.HelpCommand = function() {
 mindmaps.HelpCommand.prototype = new mindmaps.Command();
 
 /**
+ * Creates a new EditCommand.
+ * 
+ * @constructor
+ * @augments mindmaps.Command
+ */
+mindmaps.EditCommand = function() {
+  this.id = "EDIT_COMMAND";
+  this.enabled = true;
+  this.icon = "ui-icon-edit";
+  this.label = "Edit";
+  //this.shortcut = "F1";
+  this.description = "Edit the mindmap";
+};
+mindmaps.EditCommand.prototype = new mindmaps.Command();
+
+/**
  * Creates a new PrintCommand.
  * 
  * @constructor

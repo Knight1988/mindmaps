@@ -348,43 +348,49 @@ mindmaps.DefaultCanvasView = function() {
        * Only attach the drag handler once we mouse over it. this speeds
        * up loading of big maps.
        */
-      $node.one("mouseenter", function() {
-        $node.draggable({
-          // could be set
-          // revert: true,
-          // revertDuration: 0,
-          handle : "div.node-caption:first",
-          start : function() {
-            nodeDragging = true;
-          },
-          drag : function(e, ui) {
-            // reposition and draw canvas while dragging
-            var offsetX = ui.position.left / self.zoomFactor;
-            var offsetY = ui.position.top / self.zoomFactor;
-            var color = node.branchColor;
-            var $canvas = $getNodeCanvas(node);
+      enableDragging();
 
-            drawLineCanvas($canvas, depth, offsetX, offsetY, $node,
-                $parent, color);
+        function enableDragging() {
+            if (!self.isEditing) {
+                $node.one("mouseenter", enableDragging);
+            } else {
+                $node.draggable({
+                    // could be set
+                    // revert: true,
+                    // revertDuration: 0,
+                    handle: "div.node-caption:first",
+                    start: function () {
+                        nodeDragging = true;
+                    },
+                    drag: function (e, ui) {
+                        // reposition and draw canvas while dragging
+                        var offsetX = ui.position.left / self.zoomFactor;
+                        var offsetY = ui.position.top / self.zoomFactor;
+                        var color = node.branchColor;
+                        var $canvas = $getNodeCanvas(node);
 
-            // fire dragging event
-            if (self.nodeDragging) {
-              self.nodeDragging();
+                        drawLineCanvas($canvas, depth, offsetX, offsetY, $node,
+                            $parent, color);
+
+                        // fire dragging event
+                        if (self.nodeDragging) {
+                            self.nodeDragging();
+                        }
+                    },
+                    stop: function (e, ui) {
+                        nodeDragging = false;
+                        var pos = new mindmaps.Point(ui.position.left
+                            / self.zoomFactor, ui.position.top
+                            / self.zoomFactor);
+
+                        // fire dragged event
+                        if (self.nodeDragged) {
+                            self.nodeDragged(node, pos);
+                        }
+                    }
+                });
             }
-          },
-          stop : function(e, ui) {
-            nodeDragging = false;
-            var pos = new mindmaps.Point(ui.position.left
-                / self.zoomFactor, ui.position.top
-                / self.zoomFactor);
-
-            // fire dragged event
-            if (self.nodeDragged) {
-              self.nodeDragged(node, pos);
-            }
-          }
-        });
-      });
+        }
     }
 
     // text caption
