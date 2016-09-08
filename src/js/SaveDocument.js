@@ -155,7 +155,8 @@ mindmaps.SaveDocumentPresenter = function(eventBus, mindmapModel, view, autosave
                 eventBus.publish(mindmaps.Event.DOCUMENT_SAVED);
             },
             function(msg) {
-                view.showCloudError(msg);
+                //view.showCloudError(msg);
+                alert(msg);
             });
     };
 
