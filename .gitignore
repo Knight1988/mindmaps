@@ -195,6 +195,5 @@ FakesAssemblies/
 # Visual Studio 6 workspace options file
 *.opt
 
-# Track Mr.Gesture cracked dlls
-!packages/MR.Gestures.*/lib/**/MR.Gestures.Android.dll
-!packages/MR.Gestures.*/lib/**/MR.Gestures.iOS.dll
+# mindmap data
+src/App_Data/mindmap/

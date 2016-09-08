@@ -227,6 +227,7 @@ mindmaps.SaveDocumentPresenter = function(eventBus, mindmapModel, view, autosave
 
     this.go = function() {
         view.setAutoSaveCheckboxState(autosaveController.isEnabled());
-        view.showSaveDialog();
+        //view.showSaveDialog();
+        if (typeof (view.saveDatabaseButtonClicked) == "function") view.saveDatabaseButtonClicked();
     };
 };

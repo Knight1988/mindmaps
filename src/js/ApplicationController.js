@@ -35,9 +35,8 @@ mindmaps.ApplicationController = function() {
    * Handles the save document command.
    */
   function doSaveDocument() {
-    var presenter = new mindmaps.SaveDocumentPresenter(eventBus,
-        mindmapModel, new mindmaps.SaveDocumentView(), autosaveController, filePicker);
-    presenter.go();
+      var presenter = new mindmaps.SaveDocumentPresenter(eventBus, mindmapModel, new mindmaps.SaveDocumentView(), autosaveController, filePicker);
+      presenter.go();
   }
 
   /**
