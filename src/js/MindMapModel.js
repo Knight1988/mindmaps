@@ -82,6 +82,12 @@ mindmaps.MindMapModel = function(eventBus, commandRegistry, undoController) {
         deleteNodeCommand.setEnabled(false);
     });
 
+    eventBus.subscribe(mindmaps.Event.DOCUMENT_SAVED, function() {
+        createNodeCommand.setEnabled(false);
+        createSiblingNodeCommand.setEnabled(false);
+        deleteNodeCommand.setEnabled(false);
+    });
+
     eventBus.subscribe(mindmaps.Event.DOCUMENT_EDIT, function() {
       createNodeCommand.setEnabled(true);
       createSiblingNodeCommand.setEnabled(true);

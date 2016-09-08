@@ -150,8 +150,9 @@ mindmaps.SaveDocumentPresenter = function(eventBus, mindmapModel, view, autosave
             0,
             doc.title,
             doc.serialize(),
-            function() {
+            function () {
                 view.hideSaveDialog();
+                eventBus.publish(mindmaps.Event.DOCUMENT_SAVED);
             },
             function(msg) {
                 view.showCloudError(msg);

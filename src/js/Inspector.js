@@ -313,6 +313,13 @@ mindmaps.InspectorPresenter = function(eventBus, mindmapModel, view) {
   });
 
   /**
+   * Disable controls when document saved.
+   */
+  eventBus.subscribe(mindmaps.Event.DOCUMENT_SAVED, function () {
+    view.setControlsEnabled(false);
+  });
+
+  /**
    * Disable controls when document was closed.
    */
   eventBus.subscribe(mindmaps.Event.DOCUMENT_CLOSED, function() {
