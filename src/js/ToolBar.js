@@ -294,10 +294,10 @@ mindmaps.ToolBarPresenter = function(eventBus, commandRegistry, view,
 
     // edit button
   view.addButton(commandToButton(mindmaps.NewDocumentCommand), view.alignRight);
-  view.addButton(commandToButton(mindmaps.OpenDocumentCommand), view.alignRight);
+  //view.addButton(commandToButton(mindmaps.OpenDocumentCommand), view.alignRight);
   view.addButton(commandToButton(mindmaps.EditCommand), view.alignRight);
   view.addButton(commandToButton(mindmaps.SaveDocumentCommand), view.alignRight);
-  view.addButton(commandToButton(mindmaps.CloseDocumentCommand), view.alignRight);
+  //view.addButton(commandToButton(mindmaps.CloseDocumentCommand), view.alignRight);
 
   // file menu
   //var fileMenu = new mindmaps.ToolBarMenu("Mind map", "ui-icon-document");
