@@ -1,6 +1,15 @@
 ﻿mindmaps.EditController = function(eventBus, commandRegistry) {
-    var command = commandRegistry.get(mindmaps.EditCommand);
-    command.setHandler(function () {
+    var editCommand = commandRegistry.get(mindmaps.EditCommand);
+    editCommand.setHandler(function () {
+        editCommand.setVisible(false);
         eventBus.publish(mindmaps.Event.DOCUMENT_EDIT);
+    });
+
+    eventBus.subscribe(mindmaps.Event.DOCUMENT_SAVED, function() {
+        editCommand.setVisible(true);
+    });
+
+    eventBus.subscribe(mindmaps.Event.DOCUMENT_OPENED, function() {
+        editCommand.setVisible(true);
     });
 }

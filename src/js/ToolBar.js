@@ -82,6 +82,13 @@ mindmaps.ToolBarButton = function(command) {
           self.setEnabled(enabled);
         }
       });
+
+  command.subscribe(mindmaps.Command.Event.VISIBLE_CHANGED,
+      function(visible) {
+        if (self.setVisible) {
+          self.setVisible(visible);
+        }
+      });
 };
 
 /**
@@ -167,6 +174,12 @@ mindmaps.ToolBarButton.prototype.asJquery = function() {
   // callback to update display state
   this.setEnabled = function(enabled) {
     $button.button(enabled ? "enable" : "disable");
+  };
+
+  // callback to update visible state
+  this.setVisible = function (visible) {
+    if (visible) $button.show();
+    else $button.hide();
   };
 
   return $button;

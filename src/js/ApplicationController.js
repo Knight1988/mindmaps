@@ -98,8 +98,17 @@ mindmaps.ApplicationController = function() {
       exportCommand.setEnabled(false);
     });
 
+    eventBus.subscribe(mindmaps.Event.DOCUMENT_EDIT, function() {
+      saveDocumentCommand.setVisible(true);
+    });
+
+    eventBus.subscribe(mindmaps.Event.DOCUMENT_SAVED, function() {
+      saveDocumentCommand.setVisible(false);
+    });
+
     eventBus.subscribe(mindmaps.Event.DOCUMENT_OPENED, function() {
       saveDocumentCommand.setEnabled(true);
+      saveDocumentCommand.setVisible(false);
       closeDocumentCommand.setEnabled(true);
       exportCommand.setEnabled(true);
     });

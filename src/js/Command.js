@@ -30,7 +30,8 @@ mindmaps.Command = function() {
 mindmaps.Command.Event = {
   HANDLER_REGISTERED : "HandlerRegisteredCommandEvent",
   HANDLER_REMOVED : "HandlerRemovedCommandEvent",
-  ENABLED_CHANGED : "EnabledChangedCommandEvent"
+  ENABLED_CHANGED : "EnabledChangedCommandEvent",
+  VISIBLE_CHANGED : "VisibleChangedCommandEvent"
 };
 
 mindmaps.Command.prototype = {
@@ -77,6 +78,16 @@ mindmaps.Command.prototype = {
   setEnabled : function(enabled) {
     this.enabled = enabled;
     this.publish(mindmaps.Command.Event.ENABLED_CHANGED, enabled);
+  },
+
+  /**
+   * Sets the visible state of the command.
+   * 
+   * @param {Boolean} visible
+   */
+  setVisible : function(visible) {
+    this.visible = visible;
+    this.publish(mindmaps.Command.Event.VISIBLE_CHANGED, visible);
   }
 };
 /**

@@ -2,7 +2,7 @@
     var self = this;
     var $content = $("#db-filelist");
     var editCommand = commandRegistry.get(mindmaps.EditCommand);
-    var saveCommand = commandRegistry.get(mindmaps.SaveDocumentCommand);
+    var saveDocumentCommand = commandRegistry.get(mindmaps.SaveDocumentCommand);
 
     /**
      * Sets the height of the file list to fit between header and footer.
@@ -72,7 +72,7 @@
         mindmaps.Util.trackEvent("Clicks", "localstorage-open");
         mindmapModel.setDocument(doc);
         editCommand.setEnabled(doc.canEdit);
-        saveCommand.setEnabled(doc.canEdit);
+        saveDocumentCommand.setEnabled(doc.canEdit);
     }
     
     this.deleteDocumentClicked = function(doc) {
