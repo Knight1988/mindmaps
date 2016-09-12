@@ -18,6 +18,9 @@ mindmaps.ApplicationController = function() {
   var filePicker = new mindmaps.FilePicker(eventBus, mindmapModel);
   var editController = new mindmaps.EditController(eventBus, commandRegistry);
 
+  // increase max listener limit
+  eventBus.setMaxListeners(15);
+
   /**
    * Handles the new document command.
    */
@@ -121,8 +124,6 @@ mindmaps.ApplicationController = function() {
     var viewController = new mindmaps.MainViewController(eventBus,
         mindmapModel, commandRegistry);
     viewController.go();
-
-    doNewDocument();
   };
 
   this.init();
