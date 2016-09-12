@@ -17,4 +17,8 @@
     eventBus.subscribe(mindmaps.Event.DOCUMENT_CLOSED, function() {
         editCommand.setEnabled(false);
     });
+
+    eventBus.subscribe(mindmaps.Event.INITIALIZED, function() {
+        editCommand.setEnabled(false);
+    });
 }

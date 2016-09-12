@@ -172,5 +172,7 @@ mindmaps.MainViewController = function(eventBus, mindmapModel, commandRegistry) 
     var navigatorPanel = fpf.create("Navigator", naviView.getContent());
     //navigatorPanel.show();
     statusbarPresenter.addEntry(navigatorPanel);
+
+    eventBus.publish(mindmaps.Event.INITIALIZED);
   };
 };

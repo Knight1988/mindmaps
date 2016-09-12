@@ -8,6 +8,12 @@ mindmaps.Event = {
    * @event
    * @param {mindmaps.Document} document
    */
+  INITIALIZED: "InitializedEvent",
+
+  /**
+   * @event
+   * @param {mindmaps.Document} document
+   */
   DOCUMENT_OPENED: "DocumentOpenedEvent",
 
   /**
