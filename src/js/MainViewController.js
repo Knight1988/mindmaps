@@ -110,6 +110,7 @@ mindmaps.CanvasContainer.Event = {
 mindmaps.MainViewController = function(eventBus, mindmapModel, commandRegistry) {
   var zoomController = new mindmaps.ZoomController(eventBus, commandRegistry);
   var canvasContainer = new mindmaps.CanvasContainer();
+  var databaseFileList = new mindmaps.DatabaseFileList(eventBus, mindmapModel, commandRegistry);
 
   /**
    * When a file was dropped on the canvas container try to open it.
@@ -126,6 +127,7 @@ mindmaps.MainViewController = function(eventBus, mindmapModel, commandRegistry) 
 
   this.go = function() {
     canvasContainer.init();
+    databaseFileList.init();
 
     // init all presenters
 

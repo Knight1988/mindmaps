@@ -22,6 +22,9 @@ public class MindMapData
     [JsonProperty("data")]
     public string Data { get; set; }
 
+    [JsonProperty("canEdit")]
+    public bool CanEdit { get; set; }
+
     public string ToJson()
     {
         return JsonConvert.SerializeObject(this, Formatting.None, new JsonSerializerSettings()

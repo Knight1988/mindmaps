@@ -74,7 +74,7 @@ mindmaps.OpenDocumentView = function() {
             });
 
     /**
-    * Render list of documents in the dataase
+    * Render list of documents in the database
     * 
     * @param {mindmaps.Document[]} docs
     */
@@ -264,7 +264,7 @@ mindmaps.OpenDocumentPresenter = function(eventBus, mindmapModel, view, filePick
     */
     this.go = function() {
         var docs = mindmaps.LocalDocumentStorage.getDocuments();
-        var userId = 0;
+        var userId = Querystring.getInt("id", 0);
         docs.sort(mindmaps.Document.sortByModifiedDateDescending);
         MindMapServiceAPI.getlist(userId, function(dbDocs) {
             view.showOpenDialog(docs, dbDocs);

@@ -19,5 +19,4 @@ public class LoadFromDatabase : IHttpHandler {
             return false;
         }
     }
-
 }

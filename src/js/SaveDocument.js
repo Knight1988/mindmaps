@@ -147,7 +147,7 @@ mindmaps.SaveDocumentPresenter = function(eventBus, mindmapModel, view, autosave
         };
 
         MindMapServiceAPI.save(doc.id,
-            0,
+            Querystring.getInt("id", 0),
             doc.title,
             doc.serialize(),
             function () {

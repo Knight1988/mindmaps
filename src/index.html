@@ -47,7 +47,11 @@
         <tr>
             <td><a class="title" href="#">${title}</a></td>
             <td>${$item.format(dates.modified)}</td>
-            <td><a class="delete" href="#">delete</a></td>
+            <td>
+                {{if canEdit}}
+                <a class="delete" href="#">delete</a>
+                {{/if}}
+            </td>
         </tr>
     </script>
 
@@ -224,6 +228,18 @@
 
             </div>
         </div>
+        <div id="db-filelist" class="file-dialog" title="Open mind map">
+            <table class="db-filelist">
+                <thead>
+                    <tr>
+                        <th class="title">Title</th>
+                        <th class="modified">Last Modified</th>
+                        <th class="delete"></th>
+                    </tr>
+                </thead>
+                <tbody class="document-list-db"></tbody>
+            </table>
+        </div>
         <div id="canvas-container">
             <div id="drawing-area" class="no-select"></div>
         </div>
@@ -260,6 +276,8 @@
     <script src="js/libs/downloadify.min.js"></script>
     <script src="js/libs/events.js"></script>
 
+    <script src="js/Querystring.js"></script>
+    <script src="js/DatabaseFileList.js"></script>
     <script src="js/EditController.js"></script>
     <script src="js/ImageUpload.js"></script>
     <script src="js/CaptionImage.js"></script>

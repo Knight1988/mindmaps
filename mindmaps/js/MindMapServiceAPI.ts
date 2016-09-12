@@ -49,7 +49,7 @@ module MindMapServiceAPI {
                     }
                     // success
                     success(datas);
-                } else {
+                } else if (typeof (success) === "function") {
                     // error
                     error(result.message);
                 }
@@ -65,7 +65,9 @@ module MindMapServiceAPI {
                     // get the document list
                     for (let i = 0; i < result.data.length; i++) {
                         const data = result.data[i];
-                        datas.push(mindmaps.Document.fromJSON(data.data));
+                        var doc = mindmaps.Document.fromJSON(data.data);
+                        doc.canEdit = data.canEdit;
+                        datas.push(doc);
                     }
                     // success
                     success(datas);

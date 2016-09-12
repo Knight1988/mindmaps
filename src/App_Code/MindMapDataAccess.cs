@@ -64,7 +64,7 @@ public static class MindMapDataAccess
         }
     }
 
-    public static IEnumerable<MindMapData> GetList(int userId)
+    public static IEnumerable<MindMapData> GetUserDatas(int userId)
     {
         using (var connection = NewConnection())
         {
@@ -77,6 +77,27 @@ public static class MindMapDataAccess
                 while (r.Read())
                 {
                     var mindMapData = new MindMapData((Guid) r["Id"], Convert.ToInt32(r["UserId"]));
+                    mindMapData.CanEdit = mindMapData.UserId == userId;
+
+                    yield return mindMapData;
+                }
+            }
+        }
+    }
+
+    public static IEnumerable<MindMapData> GetAllDatas(int userId)
+    {
+        using (var connection = NewConnection())
+        {
+            const string cmdText = "SELECT Id, UserId FROM [MindMapData]";
+            var cmd = new SqlCommand(cmdText, connection);
+            connection.Open();
+            using (var r = cmd.ExecuteReader())
+            {
+                while (r.Read())
+                {
+                    var mindMapData = new MindMapData((Guid) r["Id"], Convert.ToInt32(r["UserId"]));
+                    mindMapData.CanEdit = mindMapData.UserId == userId;
 
                     yield return mindMapData;
                 }

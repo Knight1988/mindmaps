@@ -73,7 +73,7 @@ public static class MindMapBussiness
         try
         {
             // get the mind map list
-            var datas = MindMapDataAccess.GetList(userId).Where(HasData).ToList();
+            var datas = MindMapDataAccess.GetAllDatas(userId).Where(HasData).ToList();
 
             // return the datas
             return new MindMapResult<List<MindMapData>>(true, datas);

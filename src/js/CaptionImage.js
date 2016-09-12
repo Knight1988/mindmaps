@@ -69,7 +69,7 @@ var CaptionImage = (function () {
     CaptionImage.prototype.endEditMode = function () {
         this.isEditing = false;
         var src = this.$img.attr("src");
-        var isUploaded = src.indexOf("img/favicon.png");
+        var isUploaded = src.indexOf("img/upload-image.png");
         this.$img.css({
             cursor: "default",
             visibility: isUploaded === -1 ? "" : "hidden"

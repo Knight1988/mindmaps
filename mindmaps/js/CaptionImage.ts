@@ -75,7 +75,7 @@
     endEditMode() {
         this.isEditing = false;
         const src = this.$img.attr("src");
-        const isUploaded = src.indexOf("img/favicon.png");
+        const isUploaded = src.indexOf("img/upload-image.png");
         this.$img.css({
             cursor: "default",
             visibility: isUploaded === -1 ? "" : "hidden"

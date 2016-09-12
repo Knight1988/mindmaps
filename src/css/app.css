@@ -774,7 +774,7 @@ html,body {
 #debug-warning {
   position: fixed;
   top: 50px;
-  left: 10px;
+  left: 260px;
   z-index: 10000;
   font-size: 15px;
   font-weight: bold;
@@ -784,4 +784,16 @@ html,body {
 /* Hide export & print button */
 #toolbar .menu-wrapper #button-EXPORT_COMMAND, #toolbar .menu-wrapper #button-PRINT_COMMAND {
     display: none;
+}
+
+#db-filelist {
+    width: 230px;
+    position: absolute;
+    z-index: 1;
+    border-right: 1px solid #AAA;
+    background-color: white;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
 }
