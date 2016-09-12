@@ -9,7 +9,12 @@
         editCommand.setVisible(true);
     });
 
-    eventBus.subscribe(mindmaps.Event.DOCUMENT_OPENED, function() {
+    eventBus.subscribe(mindmaps.Event.DOCUMENT_OPENED, function () {
+        editCommand.setEnabled(true);
         editCommand.setVisible(true);
+    });
+
+    eventBus.subscribe(mindmaps.Event.DOCUMENT_CLOSED, function() {
+        editCommand.setEnabled(false);
     });
 }
