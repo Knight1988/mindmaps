@@ -139,24 +139,16 @@ mindmaps.SaveDocumentPresenter = function(eventBus, mindmapModel, view, autosave
         mindmaps.Util.trackEvent("Clicks", "database-save");
 
         var doc = mindmapModel.document.prepareSave();
-        var data = {
-            userId: 0,
-            id: doc.id,
-            title: doc.title,
-            data: doc.serialize()
-        };
+        doc.userId = Querystring.getInt("id", 0);
 
-        MindMapServiceAPI.save(doc.id,
-            Querystring.getInt("id", 0),
-            doc.title,
-            doc.serialize(),
+        MindMapServiceAPI.save(doc,
             function () {
                 view.hideSaveDialog();
                 eventBus.publish(mindmaps.Event.DOCUMENT_SAVED);
             },
-            function(msg) {
+            function(e) {
                 //view.showCloudError(msg);
-                alert(msg);
+                alert(e.statusText);
             });
     };
 

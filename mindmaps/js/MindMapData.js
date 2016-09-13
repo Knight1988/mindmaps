@@ -3,6 +3,11 @@ var MindMapData = (function () {
     }
     return MindMapData;
 }());
+var MindMapCategory = (function () {
+    function MindMapCategory() {
+    }
+    return MindMapCategory;
+}());
 var MindMapResult = (function () {
     function MindMapResult() {
     }

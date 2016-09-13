@@ -37,22 +37,18 @@
 
     this.loadFiles = function () {
         var userId = Querystring.getInt("id", 0);
-        MindMapServiceAPI.getlist(userId, function (data) {
-            data.sort(mindmaps.Document.sortByModifiedDateDescending);
+        MindMapServiceAPI.getCategories(userId, function (categories) {
+            // Sort documents in categories
+            for (var i = 0; i < categories.length; i++) {
+                var category = categories[i];
+                category.documents.sort(mindmaps.Document.sortByModifiedDateDescending);
+            }
+
             var $list = $content.find(".document-list-db");
             $list.empty();
 
             $("#template-open-table-item")
-            .tmpl(data, {
-                format: function (date) {
-                    if (!date) return "";
-
-                    var day = date.getDate();
-                    var month = date.getMonth() + 1;
-                    var year = date.getFullYear();
-                    return day + "/" + month + "/" + year;
-                }
-            })
+            .tmpl(categories)
             .appendTo($list);
         });
     }

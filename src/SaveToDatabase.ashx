@@ -2,6 +2,10 @@
 
 using System;
 using System.Web;
+using MindMap;
+using MindMap.Bussiness;
+using MindMap.Entity;
+using Newtonsoft.Json;
 
 public class SaveToDatabase : IHttpHandler
 {
@@ -10,13 +14,10 @@ public class SaveToDatabase : IHttpHandler
         context.Response.ContentType = "application/json";
 
         // get parameters
-        var id = Guid.Parse(context.Request["id"]);
-        var userId = Convert.ToInt32(context.Request["userId"]);
-        var title = context.Request["title"];
-        var data = context.Request["data"];
+        var doc = JsonConvert.DeserializeObject<Document>(context.Request["doc"]);
 
-        var result = MindMapBussiness.Save(id, userId, title, data);
-        context.Response.Write(result.ToJson());
+        DocumentBussiness.Save(doc);
+        context.Response.Write("true");
     }
 
     public bool IsReusable

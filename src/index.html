@@ -44,9 +44,27 @@
     </script>
 
     <script id="template-open-table-item" type="text/x-jquery-tmpl">
+        <li>
+            <table class="db-filelist">
+                <thead>
+                    <tr>
+                        <th class="title">${name}</th>
+                        <th class="modified"></th>
+                        <th class="delete"></th>
+                    </tr>
+                </thead>
+                <tbody class="document-list-db">
+                    {{tmpl(documents) "#template-table-item"}}
+                </tbody>
+            </table>
+        </li>
+
+    </script>
+
+    <script id="template-table-item" type="text/x-jquery-tmpl">
         <tr>
             <td><a class="title" href="#">${title}</a></td>
-            <td>${$item.format(dates.modified)}</td>
+            <td>${dates.format(dates.modified)}</td>
             <td>
                 {{if canEdit}}
                 <a class="delete" href="#">delete</a>
@@ -58,9 +76,12 @@
     <script id="template-new" type="text/x-jquery-tmpl">
         <div class="file-dialog" style="text-align: center" title="New mind map">
             <h1>Enter mind map title</h1>
-            <p><input id="document-title" type="text" value="Central Idea" style="text-align: center;width: 250px" /></p>
+            <p>
+                <input id="document-title" type="text" value="Central Idea" style="text-align: center; width: 250px" />
+            </p>
             <button id="button-new-document">New</button>
         </div>
+
     </script>
 
     <script id="template-open" type="text/x-jquery-tmpl">
@@ -237,16 +258,7 @@
             </div>
         </div>
         <div id="db-filelist" class="file-dialog" title="Open mind map">
-            <table class="db-filelist">
-                <thead>
-                    <tr>
-                        <th class="title">Title</th>
-                        <th class="modified">Last Modified</th>
-                        <th class="delete"></th>
-                    </tr>
-                </thead>
-                <tbody class="document-list-db"></tbody>
-            </table>
+            <ul class="document-list-db"></ul>
         </div>
         <div id="canvas-container">
             <div id="drawing-area" class="no-select"></div>
@@ -284,6 +296,7 @@
     <script src="js/libs/downloadify.min.js"></script>
     <script src="js/libs/events.js"></script>
 
+    <script src="js/Category.js"></script>
     <script src="js/Querystring.js"></script>
     <script src="js/DatabaseFileList.js"></script>
     <script src="js/EditController.js"></script>

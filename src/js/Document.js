@@ -5,6 +5,9 @@
  */
 mindmaps.Document = function() {
   this.id = mindmaps.Util.createUUID();
+  this.userId = 0;
+  this.categoryId = null;
+  this.id = mindmaps.Util.createUUID();
   this.title = "New Document";
   this.mindmap = new mindmaps.MindMap();
   this.dates = {
@@ -13,6 +16,7 @@ mindmaps.Document = function() {
   };
 
   this.dimensions = new mindmaps.Point(4000, 2000);
+  this.canEdit = true;
   this.autosave = false;
 };
 
@@ -24,7 +28,7 @@ mindmaps.Document = function() {
  * @returns {mindmaps.Document}
  */
 mindmaps.Document.fromJSON = function(json) {
-  return mindmaps.Document.fromObject(JSON.parse(json))
+    return mindmaps.Document.fromObject(JSON.parse(json));
 };
 
 /**
@@ -37,14 +41,25 @@ mindmaps.Document.fromJSON = function(json) {
 mindmaps.Document.fromObject = function(obj) {
   var doc = new mindmaps.Document();
   doc.id = obj.id;
+  doc.userId = obj.userId;
+  doc.categoryId = obj.categoryId;
   doc.title = obj.title;
   doc.mindmap = mindmaps.MindMap.fromObject(obj.mindmap);
   doc.dates = {
     created : new Date(obj.dates.created),
-    modified : obj.dates.modified ? new Date(obj.dates.modified) : null
+    modified: obj.dates.modified ? new Date(obj.dates.modified) : null,
+    format : function(date) {
+        if (!date) return "";
+
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+        return day + "/" + month + "/" + year;
+    }
   };
 
   doc.dimensions = mindmaps.Point.fromObject(obj.dimensions);
+  doc.canEdit = obj.canEdit;
   doc.autosave = obj.autosave;
 
   return doc;
@@ -67,6 +82,8 @@ mindmaps.Document.prototype.toJSON = function() {
 
   return {
     id : this.id,
+    userId: this.userId,
+    categoryId: this.categoryId,
     title : this.title,
     mindmap : this.mindmap,
     dates : dates,
@@ -90,6 +107,7 @@ mindmaps.Document.prototype.serialize = function() {
 mindmaps.Document.prototype.prepareSave = function() {
   this.dates.modified = new Date();
   this.title = this.mindmap.getRoot().getCaption();
+  this.userId = Querystring.getInt("id", 0);
   return this;
 };
 

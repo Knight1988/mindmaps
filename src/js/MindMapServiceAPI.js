@@ -2,72 +2,56 @@
 var MindMapServiceAPI;
 (function (MindMapServiceAPI) {
     function load(id, success, error) {
-        $.post("LoadFromDatabase.ashx", { id: id }, function (result) {
-            if (result.success && typeof (success) === "function") {
-                // success
-                success(result.data);
-            }
-            else {
-                // error
-                error(result.message);
-            }
+        $.ajax({
+            type: "POST",
+            url: "LoadFrom.ashx",
+            data: { id: id },
+            success: success,
+            error: error,
+            dataType: "json"
         });
     }
     MindMapServiceAPI.load = load;
-    function save(id, userId, title, data, success, error) {
-        var obj = { id: id, userId: userId, title: title, data: data };
-        $.post("SaveToDatabase.ashx", obj, function (result) {
-            if (result.success && typeof (success) === "function") {
-                // success
-                success();
-            }
-            else {
-                // error
-                error(result.message);
-            }
+    function save(doc, success, error) {
+        $.ajax({
+            type: "POST",
+            url: "SaveToDatabase.ashx",
+            data: { doc: doc.serialize() },
+            success: success,
+            error: error,
+            dataType: "json"
         });
     }
     MindMapServiceAPI.save = save;
     function remove(doc, success, error) {
-        $.post("RemoveFromDatabase.ashx", { id: doc.id }, function (result) {
-            if (result.success && typeof (success) === "function") {
-                var datas = [];
-                // get the document list
-                for (var i = 0; i < result.data.length; i++) {
-                    var data = result.data[i];
-                    datas.push(mindmaps.Document.fromJSON(data.data));
-                }
-                // success
-                success(datas);
-            }
-            else if (typeof (success) === "function") {
-                // error
-                error(result.message);
-            }
+        $.ajax({
+            type: "POST",
+            url: "RemoveFromDatabase.ashx",
+            data: { userId: doc.userId, id: doc.id },
+            success: success,
+            error: error,
+            dataType: "json"
         });
     }
     MindMapServiceAPI.remove = remove;
-    function getlist(userId, success, error) {
+    function getCategories(userId, success, error) {
         $.post("LoadFromDatabase.ashx", { userId: userId }, function (result) {
-            if (result.success && typeof (success) === "function") {
-                var datas = [];
-                // get the document list
-                for (var i = 0; i < result.data.length; i++) {
-                    var data = result.data[i];
-                    var doc = mindmaps.Document.fromJSON(data.data);
-                    doc.canEdit = data.canEdit;
-                    datas.push(doc);
-                }
-                // success
-                success(datas);
-            }
-            else {
-                // error
-                error(result.message);
-            }
+            var categories = parseData(userId, result);
+            // success
+            success(categories);
         });
     }
-    MindMapServiceAPI.getlist = getlist;
+    MindMapServiceAPI.getCategories = getCategories;
+    function parseData(userId, datas) {
+        var categories = [];
+        // get the document list
+        for (var i = 0; i < datas.length; i++) {
+            // get category
+            var category = mindmaps.Category.fromObject(datas[i]);
+            categories.push(category);
+        }
+        return categories;
+    }
 })(MindMapServiceAPI || (MindMapServiceAPI = {}));
 // ReSharper restore InconsistentNaming 
 //# sourceMappingURL=MindMapServiceAPI.js.map

@@ -2,6 +2,8 @@
 
 using System;
 using System.Web;
+using MindMap;
+using MindMap.Bussiness;
 
 public class LoadFromDatabase : IHttpHandler {
     
@@ -9,7 +11,7 @@ public class LoadFromDatabase : IHttpHandler {
         context.Response.ContentType = "application/json";
 
         var userId = Convert.ToInt32(context.Request["userId"]);
-        var datas = MindMapBussiness.GetList(userId);
+        var datas = CategoryBussiness.GetPublicCategories(userId);
 
         context.Response.Write(datas.ToJson());
     }

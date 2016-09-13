@@ -2,6 +2,8 @@
 
 using System;
 using System.Web;
+using MindMap;
+using MindMap.Bussiness;
 
 public class RemoveFromDatabase : IHttpHandler {
     
@@ -12,7 +14,7 @@ public class RemoveFromDatabase : IHttpHandler {
         var id = Guid.Parse(context.Request["id"]);
         var userId = Convert.ToInt32(context.Request["userId"]);
 
-        var result = MindMapBussiness.Delete(new MindMapData(id, userId));
+        var result = DocumentBussiness.Delete(id, userId);
         context.Response.Write(result.ToJson());
     }
  
