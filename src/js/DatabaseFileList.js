@@ -78,12 +78,15 @@
         saveDocumentCommand.setEnabled(doc.canEdit);
     }
     
-    this.deleteDocumentClicked = function(doc) {
-        // TODO event
-        MindMapServiceAPI.remove(doc);
+    this.deleteDocumentClicked = function (doc) {
+        var result = confirm("Delete document '" + doc.title + "'?");
+        if (result) {
+            // remove the document
+            MindMapServiceAPI.remove(doc);
 
-        // re-render view
-        this.loadFiles();
+            // re-render view
+            this.loadFiles();
+        }
     }
 
     eventBus.subscribe(mindmaps.Event.DOCUMENT_SAVED, function () {
