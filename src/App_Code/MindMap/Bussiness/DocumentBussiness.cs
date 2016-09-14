@@ -44,10 +44,10 @@ namespace MindMap.Bussiness
         /// <summary>
         ///     Load document from file
         /// </summary>
-        /// <param name="userId">userId to check editable</param>
         /// <param name="doc"></param>
+        /// <param name="userId">userId to check editable</param>
         /// <returns></returns>
-        private static Document LoadDocumentData(int userId, Document doc)
+        private static Document LoadDocumentData(this Document doc, int userId)
         {
             // get file path
             var path = GetFilePath(doc.Id);
@@ -86,7 +86,7 @@ namespace MindMap.Bussiness
             return
                 DataAccess.GetDocumentInCategory(categoryId, userId)
                     .Where(HasData)
-                    .Select(p => LoadDocumentData(userId, p))
+                    .Select(p => LoadDocumentData(p, userId))
                     .ToList();
         }
 
@@ -104,8 +104,14 @@ namespace MindMap.Bussiness
             return
                 DataAccess.GetUserPrivateDocuments(userId)
                     .Where(HasData)
-                    .Select(p => LoadDocumentData(userId, p))
+                    .Select(p => LoadDocumentData(p, userId))
                     .ToList();
+        }
+
+        public static Document GetReferenceDocument(Guid docId, int userId)
+        {
+            var doc = DataAccess.GetReferenceDocument(docId, userId);
+            return doc == null ? null : doc.LoadDocumentData(userId);
         }
     }
 }

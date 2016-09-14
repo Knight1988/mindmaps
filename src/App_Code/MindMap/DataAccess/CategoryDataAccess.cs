@@ -61,7 +61,7 @@ namespace MindMap.DataAccess
                 const string cmdText = @"
 SELECT [t0].[Id], [t0].[Name], [t0].[IsPublic]
 FROM [MindMapCategory] AS [t0]
-WHERE ([t0].[IsPublic] = 1) OR ([t0].[Id] = 1)
+WHERE ([t0].[IsPublic] = 1)
 ";
                 var cmd = new SqlCommand(cmdText.Trim(), connection);
                 connection.Open();

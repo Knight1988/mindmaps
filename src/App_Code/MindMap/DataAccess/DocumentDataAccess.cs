@@ -91,8 +91,11 @@ WHERE ([t0].[Id] = @Id) AND ([t0].[UserId] = @UserId)
         {
             using (var connection = Connection.NewConnection())
             {
-                const string cmdText = "SELECT Id, CategoryId, UserId FROM [MindMapDocument] WHERE CategoryId = @CategoryId";
-                var cmd = new SqlCommand(cmdText, connection);
+                const string cmdText = @"
+SELECT [t0].[Id], [t0].[UserId], [t0].[CategoryId], [t0].[ParentId]
+FROM [MindMapDocument] AS [t0]
+WHERE [t0].[CategoryId] = @CategoryId";
+                var cmd = new SqlCommand(cmdText.Trim(), connection);
                 cmd.Parameters.Add("@CategoryId", SqlDbType.Int).Value = categoryId;
                 connection.Open();
                 using (var r = cmd.ExecuteReader())
@@ -113,7 +116,7 @@ WHERE ([t0].[Id] = @Id) AND ([t0].[UserId] = @UserId)
             using (var connection = Connection.NewConnection())
             {
                 const string cmdText = @"
-SELECT [t0].[Id], [t0].[UserId], [t0].[CategoryId]
+SELECT [t0].[Id], [t0].[UserId], [t0].[CategoryId], [t0].[ParentId]
 FROM [MindMapDocument] AS [t0]
 WHERE ([t0].[CategoryId] IS NULL) AND ([t0].[UserId] = @UserId)
 ";
@@ -131,13 +134,38 @@ WHERE ([t0].[CategoryId] IS NULL) AND ([t0].[UserId] = @UserId)
             }
         }
 
+        public Document GetReferenceDocument(Guid docId, int userId)
+        {
+            using (var connection = Connection.NewConnection())
+            {
+                const string cmdText = @"
+SELECT [t0].[Id], [t0].[UserId], [t0].[CategoryId], [t0].[ParentId]
+FROM [MindMapDocument] AS [t0]
+WHERE ([t0].[UserId] = @UserId) AND ([t0].[ParentId] = @ParentId)
+";
+                var cmd = new SqlCommand(cmdText.Trim(), connection);
+                cmd.Parameters.Add("@UserId", SqlDbType.Int).Value = userId;
+                cmd.Parameters.Add("@ParentId", SqlDbType.UniqueIdentifier).Value = docId;
+                connection.Open();
+                using (var r = cmd.ExecuteReader())
+                {
+                    if (r.Read())
+                    {
+                        return ParseDocument(r);
+                    }
+                    return null;
+                }
+            }
+        }
+
         private Document ParseDocument(IDataReader r)
         {
             return new Document()
             {
                 Id = (Guid)r["Id"],
                 CategoryId = r["CategoryId"] as int?,
-                UserId = Convert.ToInt32(r["UserId"])
+                UserId = Convert.ToInt32(r["UserId"]),
+                ParentId = r["ParentId"] as Guid?
             };
         }
     }

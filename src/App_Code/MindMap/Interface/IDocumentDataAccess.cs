@@ -52,5 +52,13 @@ namespace MindMap.Interface
         /// <param name="userId"></param>
         /// <returns></returns>
         IEnumerable<Document> GetUserPrivateDocuments(int userId);
+
+        /// <summary>
+        /// Get reference document
+        /// </summary>
+        /// <param name="docId"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        Document GetReferenceDocument(Guid docId, int userId);
     }
 }

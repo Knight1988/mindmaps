@@ -47,6 +47,9 @@ namespace MindMap.Entity
         [JsonProperty("canEdit")]
         public bool? CanEdit { get; set; }
 
+        [JsonProperty("parentId")]
+        public Guid? ParentId { get; set; }
+
         [JsonObject(MemberSerialization.OptIn)]
         public class Date
         {

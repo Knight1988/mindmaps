@@ -29,6 +29,9 @@ namespace MindMap.Bussiness
             {
                 // get documents
                 var documents = DocumentBussiness.GetDocumentInCategory(category.Id, userId);
+
+                documents = GetReferenceDocuments(userId, documents).ToList();
+
                 category.Documents = documents;
             }
 
@@ -36,6 +39,15 @@ namespace MindMap.Bussiness
             categories.Add(GetPrivateCategory(userId));
 
             return categories;
+        }
+
+        private static IEnumerable<Document> GetReferenceDocuments(int userId, List<Document> documents)
+        {
+            foreach (var doc in documents)
+            {
+                var refDoc = DocumentBussiness.GetReferenceDocument(doc.Id, userId);
+                yield return refDoc ?? doc;
+            }
         }
 
         /// <summary>
