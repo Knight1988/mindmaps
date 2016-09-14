@@ -14,9 +14,10 @@ public class SaveToDatabase : IHttpHandler
         context.Response.ContentType = "application/json";
 
         // get parameters
+        var userId = Convert.ToInt32(context.Request["userId"]);
         var doc = JsonConvert.DeserializeObject<Document>(context.Request["doc"]);
 
-        DocumentBussiness.Save(doc);
+        DocumentBussiness.Save(userId, doc);
         context.Response.Write("true");
     }
 

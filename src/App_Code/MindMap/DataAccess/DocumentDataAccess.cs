@@ -16,10 +16,11 @@ namespace MindMap.DataAccess
         {
             using (var connection = Connection.NewConnection())
             {
-                const string cmdText = "INSERT INTO [MindMapDocument] (Id, UserId) VALUES (@Id, @UserId)";
+                const string cmdText = "INSERT INTO [MindMapDocument] (Id, UserId, ParentId) VALUES (@Id, @UserId, @ParentId)";
                 var cmd = new SqlCommand(cmdText, connection);
                 cmd.Parameters.Add("@Id", SqlDbType.UniqueIdentifier).Value = document.Id;
                 cmd.Parameters.Add("@UserId", SqlDbType.Int).Value = document.UserId;
+                cmd.Parameters.Add("@ParentId", SqlDbType.UniqueIdentifier).Value = document.ParentId;
                 connection.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -118,7 +119,7 @@ WHERE [t0].[CategoryId] = @CategoryId";
                 const string cmdText = @"
 SELECT [t0].[Id], [t0].[UserId], [t0].[CategoryId], [t0].[ParentId]
 FROM [MindMapDocument] AS [t0]
-WHERE ([t0].[CategoryId] IS NULL) AND ([t0].[UserId] = @UserId)
+WHERE ([t0].[CategoryId] IS NULL) AND ([t0].[UserId] = @UserId) AND ([t0].[ParentId] IS NULL)
 ";
                 var cmd = new SqlCommand(cmdText.Trim(), connection);
                 cmd.Parameters.Add("@UserId", SqlDbType.Int).Value = userId;

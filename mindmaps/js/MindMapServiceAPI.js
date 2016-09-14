@@ -12,11 +12,14 @@ var MindMapServiceAPI;
         });
     }
     MindMapServiceAPI.load = load;
-    function save(doc, success, error) {
+    function save(userId, doc, success, error) {
         $.ajax({
             type: "POST",
             url: "SaveToDatabase.ashx",
-            data: { doc: doc.serialize() },
+            data: {
+                userId: userId,
+                doc: doc.serialize()
+            },
             success: success,
             error: error,
             dataType: "json"

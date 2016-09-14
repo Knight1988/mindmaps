@@ -25,10 +25,17 @@ namespace MindMap.Bussiness
         /// <summary>
         ///     Save mindmap data to file & database
         /// </summary>
+        /// <param name="userId"></param>
         /// <param name="doc"></param>
         /// <returns></returns>
-        public static void Save(Document doc)
+        public static void Save(int userId, Document doc)
         {
+            if (doc.UserId != userId && doc.CategoryId != null)
+            {
+                doc.UserId = userId;
+                doc.ParentId = doc.Id;
+                doc.Id = Guid.NewGuid();
+            }
             var isExist = DataAccess.Exist(doc);
             // save data to json file
             var path = GetFilePath(doc.Id);
@@ -57,8 +64,8 @@ namespace MindMap.Bussiness
             // get the result
             var result = JsonConvert.DeserializeObject<Document>(json);
             result.UserId = doc.UserId;
-            result.CanEdit = userId == doc.UserId;
             result.CategoryId = doc.CategoryId;
+            result.ParentId = doc.ParentId;
 
             return result;
         }
@@ -105,6 +112,11 @@ namespace MindMap.Bussiness
                 DataAccess.GetUserPrivateDocuments(userId)
                     .Where(HasData)
                     .Select(p => LoadDocumentData(p, userId))
+                    .Select(p =>
+                    {
+                        p.CanEdit = true;// enable edit for private documents
+                        return p;
+                    })
                     .ToList();
         }
 

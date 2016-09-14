@@ -10,7 +10,7 @@ namespace MindMap.Bussiness
     /// <summary>
     /// Summary description for CategoryBussiness
     /// </summary>
-    public class CategoryBussiness
+    public static class CategoryBussiness
     {
         private static readonly ICategoryDataAccess DataAccess = new CategoryDataAccess();
 
@@ -30,7 +30,10 @@ namespace MindMap.Bussiness
                 // get documents
                 var documents = DocumentBussiness.GetDocumentInCategory(category.Id, userId);
 
-                documents = GetReferenceDocuments(userId, documents).ToList();
+                // check permission
+                bool canEdit = DataAccess.CheckPermission(category.Id, userId);
+
+                if (canEdit) documents = documents.GetReferenceDocuments(userId).ToList();
 
                 category.Documents = documents;
             }
@@ -41,12 +44,24 @@ namespace MindMap.Bussiness
             return categories;
         }
 
-        private static IEnumerable<Document> GetReferenceDocuments(int userId, List<Document> documents)
+        private static IEnumerable<Document> GetReferenceDocuments(this List<Document> documents, int userId)
         {
             foreach (var doc in documents)
             {
+                // check if has refDoc
                 var refDoc = DocumentBussiness.GetReferenceDocument(doc.Id, userId);
-                yield return refDoc ?? doc;
+                if (refDoc != null)
+                {
+                    // return refDoc if found
+                    refDoc.CanEdit = true;
+                    yield return refDoc;
+                }
+                else
+                {
+                    // return origin doc
+                    doc.CanEdit = true;
+                    yield return doc;
+                }
             }
         }
 

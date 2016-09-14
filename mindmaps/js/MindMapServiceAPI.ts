@@ -15,14 +15,17 @@ module MindMapServiceAPI {
         });
     }
 
-    export function save(doc: any,
+    export function save(userId: number, doc: any,
         success?: (data: any, textStatus: string, jqXHR: JQueryXHR) => any,
         error?: (jqXHR: JQueryXHR, textStatus: string, errorThrown: string) => any) {
-        
+
         $.ajax({
             type: "POST",
             url: "SaveToDatabase.ashx",
-            data: { doc: doc.serialize() },
+            data: {
+                userId: userId,
+                doc: doc.serialize()
+            },
             success: success,
             error: error,
             dataType: "json"

@@ -139,9 +139,9 @@ mindmaps.SaveDocumentPresenter = function(eventBus, mindmapModel, view, autosave
         mindmaps.Util.trackEvent("Clicks", "database-save");
 
         var doc = mindmapModel.document.prepareSave();
-        doc.userId = Querystring.getInt("id", 0);
+        //doc.userId = Querystring.getInt("id", 0);
 
-        MindMapServiceAPI.save(doc,
+        MindMapServiceAPI.save(Querystring.getInt("id", 0), doc,
             function () {
                 view.hideSaveDialog();
                 eventBus.publish(mindmaps.Event.DOCUMENT_SAVED);

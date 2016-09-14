@@ -28,5 +28,13 @@ namespace MindMap.Interface
         /// </summary>
         /// <returns></returns>
         IEnumerable<Category> GetPublicCategories();
+
+        /// <summary>
+        /// Check if user has permission to edit this category
+        /// </summary>
+        /// <param name="categoryId"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        bool CheckPermission(int categoryId, int userId);
     }
 }
