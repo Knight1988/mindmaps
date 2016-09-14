@@ -17,6 +17,7 @@ mindmaps.ApplicationController = function() {
   var autosaveController = new mindmaps.AutoSaveController(eventBus, mindmapModel);
   var filePicker = new mindmaps.FilePicker(eventBus, mindmapModel);
   var editController = new mindmaps.EditController(eventBus, commandRegistry);
+  var leftMenuController = new mindmaps.LeftMenuController(eventBus, commandRegistry);
 
   // increase max listener limit
   eventBus.setMaxListeners(15);

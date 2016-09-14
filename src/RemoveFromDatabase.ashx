@@ -14,8 +14,8 @@ public class RemoveFromDatabase : IHttpHandler {
         var id = Guid.Parse(context.Request["id"]);
         var userId = Convert.ToInt32(context.Request["userId"]);
 
-        var result = DocumentBussiness.Delete(id, userId);
-        context.Response.Write(result.ToJson());
+       DocumentBussiness.Delete(id, userId);
+        context.Response.Write("true");
     }
  
     public bool IsReusable {

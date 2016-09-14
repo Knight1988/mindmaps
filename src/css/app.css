@@ -589,7 +589,7 @@ html,body {
 }
 
 .file-dialog .db-filelist th.title {
-  width: 50%;
+  width: 90%;
 }
 
 .file-dialog .db-filelist th.modified {
@@ -615,6 +615,10 @@ html,body {
 
 .file-dialog .db-filelist tr:hover a.delete {
   display: inline;
+}
+
+.file-dialog .db-filelist .title {
+  cursor: pointer;
 }
 
 .file-dialog .autosave {
@@ -789,8 +793,9 @@ html,body {
 #db-filelist {
     width: 230px;
     position: absolute;
-    z-index: 1;
+    z-index: 1100;
     border-right: 1px solid #AAA;
+    border-bottom: 1px solid #AAA;
     background-color: white;
     padding-left: 10px !important;
     padding-right: 10px !important;

@@ -49,7 +49,7 @@
                 <thead>
                     <tr>
                         <th class="title">${name}</th>
-                        <th class="modified"></th>
+                        <!--<th class="modified"></th>-->
                         <th class="delete"></th>
                     </tr>
                 </thead>
@@ -64,7 +64,7 @@
     <script id="template-table-item" type="text/x-jquery-tmpl">
         <tr>
             <td><a class="title" href="#">${title}</a></td>
-            <td>${dates.format(dates.modified)}</td>
+            <!--<td>${dates.format(dates.modified)}</td>-->
             <td>
                 {{if canEdit}}
                 <a class="delete" href="#">delete</a>
@@ -296,6 +296,7 @@
     <script src="js/libs/downloadify.min.js"></script>
     <script src="js/libs/events.js"></script>
 
+    <script src="js/LeftMenuController.js"></script>
     <script src="js/Category.js"></script>
     <script src="js/Querystring.js"></script>
     <script src="js/DatabaseFileList.js"></script>

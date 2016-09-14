@@ -41,46 +41,6 @@ namespace MindMap.Bussiness
                 DataAccess.Insert(doc);
         }
 
-        public static Result Delete(Document data)
-        {
-            try
-            {
-                // delete the mindmap
-                DataAccess.Delete(data.Id);
-                // delete json file
-                var path = GetFilePath(data.Id);
-                if (File.Exists(path)) File.Delete(path);
-
-                // fetch the list
-                return GetList(data.UserId);
-            }
-            catch (Exception e)
-            {
-                return new Result(false, e.Message);
-            }
-        }
-
-        public static Result<List<Document>> GetList(int userId)
-        {
-            try
-            {
-                // get the mind map list
-                var datas =
-                    DataAccess.GetAllDocuments(userId)
-                        .Where(HasData)
-                        .Select(p => LoadDocumentData(userId, p))
-                        .ToList();
-
-                // return the datas
-                return new Result<List<Document>>(true, datas);
-            }
-            catch (Exception e)
-            {
-                // return fail message
-                return new Result<List<Document>>(false, e.Message);
-            }
-        }
-
         /// <summary>
         ///     Load document from file
         /// </summary>
@@ -117,7 +77,7 @@ namespace MindMap.Bussiness
             if (File.Exists(path)) return true;
 
             // delete the data
-            Delete(doc);
+            Delete(doc.Id, doc.UserId);
             return false;
         }
 
@@ -130,23 +90,13 @@ namespace MindMap.Bussiness
                     .ToList();
         }
 
-        public static Result Delete(Guid id, int userId)
+        public static void Delete(Guid id, int userId)
         {
-            try
-            {
-                // delete the mindmap
-                DataAccess.Delete(id);
-                // delete json file
-                var path = GetFilePath(id);
-                if (File.Exists(path)) File.Delete(path);
-
-                // fetch the list
-                return new Result(true);
-            }
-            catch (Exception e)
-            {
-                return new Result(false, e.Message);
-            }
+            // delete the mindmap
+            DataAccess.Delete(id);
+            // delete json file
+            var path = GetFilePath(id);
+            if (File.Exists(path)) File.Delete(path);
         }
 
         public static List<Document> GetUserPrivateDocument(int userId)

@@ -16,8 +16,7 @@
     };
 
     this.tableEvent = function() {
-        var $db = $content;
-        $db.delegate("a.title",
+        $content.delegate("a.title",
                 "click",
                 function () {
                     if (self.documentClicked) {
@@ -35,6 +34,12 @@
                 });
     }
 
+    this.captionEvent = function () {
+        $content.delegate("th.title", "click", function() {
+            $(this).parents("table").find(".document-list-db").toggle();
+        });
+    }
+
     this.loadFiles = function () {
         var userId = Querystring.getInt("id", 0);
         MindMapServiceAPI.getCategories(userId, function (categories) {
@@ -50,6 +55,7 @@
             $("#template-open-table-item")
             .tmpl(categories)
             .appendTo($list);
+            $content.find("tbody.document-list-db").hide();
         });
     }
 
@@ -62,6 +68,7 @@
         this.setSize();
         this.loadFiles();
         this.tableEvent();
+        this.captionEvent();
     };
 
     this.documentClicked = function(doc) {
