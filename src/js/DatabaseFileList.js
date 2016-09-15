@@ -31,6 +31,14 @@
                         var t = $(this).tmplItem();
                         self.deleteDocumentClicked(t.data);
                     }
+                })
+            .delegate("a.restore",
+                "click",
+                function () {
+                    if (self.restoreDocumentClicked) {
+                        var t = $(this).tmplItem();
+                        self.restoreDocumentClicked(t.data);
+                    }
                 });
     }
 
@@ -101,6 +109,18 @@
                 self.loadFiles(doc.category.id);
             });
 
+        }
+    }
+
+    this.restoreDocumentClicked = function (doc) {
+        var self = this;
+        var result = confirm("Restore document '" + doc.title + "'?");
+        if (result) {
+            // remove the document
+            MindMapServiceAPI.remove(doc, function () {
+                // re-render view
+                self.loadFiles(doc.category.id);
+            });
         }
     }
 

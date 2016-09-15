@@ -115,6 +115,7 @@ namespace MindMap.Bussiness
                     .Select(p =>
                     {
                         p.CanEdit = true;// enable edit for private documents
+                        p.CanDelete = true;// enable delete for private documents
                         return p;
                     })
                     .ToList();
@@ -123,7 +124,14 @@ namespace MindMap.Bussiness
         public static Document GetReferenceDocument(Guid docId, int userId)
         {
             var doc = DataAccess.GetReferenceDocument(docId, userId);
-            return doc == null ? null : doc.LoadDocumentData(userId);
+            if (doc != null)
+            {
+                doc = doc.LoadDocumentData(userId);
+                doc.CanEdit = true;
+                doc.CanDelete = false;
+                return doc;
+            }
+            return null;
         }
     }
 }

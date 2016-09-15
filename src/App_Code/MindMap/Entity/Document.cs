@@ -50,6 +50,9 @@ namespace MindMap.Entity
         [JsonProperty("parentId")]
         public Guid? ParentId { get; set; }
 
+        [JsonProperty("canDelete")]
+        public bool CanDelete { get; set; }
+
         [JsonObject(MemberSerialization.OptIn)]
         public class Date
         {

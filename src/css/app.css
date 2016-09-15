@@ -597,6 +597,14 @@ html, body {
             display: inline;
         }
 
+        .file-dialog .db-filelist a.restore {
+            display: none;
+        }
+
+        .file-dialog .db-filelist tr:hover a.restore {
+            display: inline;
+        }
+
         .file-dialog .db-filelist .title {
             cursor: pointer;
         }
