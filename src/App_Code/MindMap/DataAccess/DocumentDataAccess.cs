@@ -20,7 +20,7 @@ namespace MindMap.DataAccess
                 var cmd = new SqlCommand(cmdText, connection);
                 cmd.Parameters.Add("@Id", SqlDbType.UniqueIdentifier).Value = document.Id;
                 cmd.Parameters.Add("@UserId", SqlDbType.Int).Value = document.UserId;
-                cmd.Parameters.Add("@ParentId", SqlDbType.UniqueIdentifier).Value = document.ParentId;
+                cmd.Parameters.Add("@ParentId", SqlDbType.UniqueIdentifier).Value = (object)document.ParentId ?? DBNull.Value;
                 connection.Open();
                 cmd.ExecuteNonQuery();
             }
