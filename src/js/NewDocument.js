@@ -55,6 +55,7 @@ mindmaps.NewDocumentPresenter = function (eventBus, mindmapModel, view) {
     view.newDocumentClicked = function (doc) {
         mindmapModel.setDocument(doc);
         view.hideNewDialog();
+        eventBus.publish(mindmaps.Event.DOCUMENT_CREATED);
     }
 
     this.go = function () {
