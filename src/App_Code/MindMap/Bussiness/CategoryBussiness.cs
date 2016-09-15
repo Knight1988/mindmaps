@@ -54,12 +54,16 @@ namespace MindMap.Bussiness
                 {
                     // return refDoc if found
                     refDoc.CanEdit = true;
+                    refDoc.CanDelete = false;
+                    refDoc.CanRestore = true;
                     yield return refDoc;
                 }
                 else
                 {
                     // return origin doc
                     doc.CanEdit = true;
+                    doc.CanDelete = false;
+                    doc.CanRestore = false;
                     yield return doc;
                 }
             }

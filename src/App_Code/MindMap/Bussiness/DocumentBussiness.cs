@@ -124,14 +124,9 @@ namespace MindMap.Bussiness
         public static Document GetReferenceDocument(Guid docId, int userId)
         {
             var doc = DataAccess.GetReferenceDocument(docId, userId);
-            if (doc != null)
-            {
-                doc = doc.LoadDocumentData(userId);
-                doc.CanEdit = true;
-                doc.CanDelete = false;
-                return doc;
-            }
-            return null;
+            if (doc == null) return null;
+            doc = doc.LoadDocumentData(userId);
+            return doc;
         }
     }
 }

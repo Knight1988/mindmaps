@@ -124,7 +124,7 @@
         }
     }
 
-    eventBus.subscribe(mindmaps.Event.DOCUMENT_SAVED, function () {
-        self.loadFiles(0);
+    eventBus.subscribe(mindmaps.Event.DOCUMENT_SAVED, function (doc) {
+        self.loadFiles(doc.category === null ? 0 : doc.category.id);
     });
 }

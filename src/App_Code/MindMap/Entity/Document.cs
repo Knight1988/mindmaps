@@ -53,6 +53,9 @@ namespace MindMap.Entity
         [JsonProperty("canDelete")]
         public bool CanDelete { get; set; }
 
+        [JsonProperty("canRestore")]
+        public bool CanRestore { get; set; }
+
         [JsonObject(MemberSerialization.OptIn)]
         public class Date
         {

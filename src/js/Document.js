@@ -18,6 +18,7 @@ mindmaps.Document = function () {
     this.dimensions = new mindmaps.Point(4000, 2000);
     this.canEdit = true;
     this.canDelete = true;
+    this.canRestore = false;
     this.autosave = false;
 };
 
@@ -63,6 +64,7 @@ mindmaps.Document.fromObject = function (obj) {
     doc.dimensions = mindmaps.Point.fromObject(obj.dimensions);
     doc.canEdit = obj.canEdit;
     doc.canDelete = obj.canDelete;
+    doc.canRestore = obj.canRestore;
     doc.autosave = obj.autosave;
 
     return doc;
