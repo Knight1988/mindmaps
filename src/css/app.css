@@ -775,6 +775,7 @@ html, body {
 
 #db-filelist {
     width: 230px;
+    overflow-y: scroll;
     position: absolute;
     z-index: 1100;
     border-right: 1px solid #AAA;
