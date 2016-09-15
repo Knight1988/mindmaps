@@ -28,14 +28,15 @@ mindmaps.Category.fromJSON = function (json) {
  * @returns {mindmaps.Category}
  */
 mindmaps.Category.fromObject = function (obj) {
-    var doc = new mindmaps.Category();
-    doc.id = obj.id;
-    doc.name = obj.name;
+    var category = new mindmaps.Category();
+    category.id = obj.id;
+    category.name = obj.name;
 
     for (var i = 0; i < obj.documents.length; i++) {
-        var objDoc = mindmaps.Document.fromObject(obj.documents[i]);
-        doc.documents.push(objDoc);
+        var doc = mindmaps.Document.fromObject(obj.documents[i]);
+        doc.category = category;
+        category.documents.push(doc);
     }
 
-    return doc;
+    return category;
 };

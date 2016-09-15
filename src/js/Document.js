@@ -129,6 +129,23 @@ mindmaps.Document.sortByModifiedDateDescending = function (doc1, doc2) {
 };
 
 /**
+ * Sort function for Array.sort().
+ * 
+ * @static
+ * @param {mindmaps.Document} doc1
+ * @param {mindmaps.Document} doc2
+ */
+mindmaps.Document.sortByCreatedDateAscending = function (doc1, doc2) {
+    if (doc1.dates.modified < doc2.dates.modified) {
+        return -1;
+    }
+    if (doc1.dates.modified > doc2.dates.modified) {
+        return 1;
+    }
+    return 0;
+};
+
+/**
  * Tells whether this document considerd as "new", that is has not been saved
  * yet.
  * 

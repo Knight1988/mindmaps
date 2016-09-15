@@ -15,7 +15,7 @@
         $content.height(height);
     };
 
-    this.tableEvent = function() {
+    this.tableEvent = function () {
         $content.delegate("a.title",
                 "click",
                 function () {
@@ -35,18 +35,18 @@
     }
 
     this.captionEvent = function () {
-        $content.delegate("th.title", "click", function() {
+        $content.delegate("th.title", "click", function () {
             $(this).parents("table").find(".document-list-db").toggle();
         });
     }
 
-    this.loadFiles = function () {
+    this.loadFiles = function (expandCategoryId) {
         var userId = Querystring.getInt("id", 0);
         MindMapServiceAPI.getCategories(userId, function (categories) {
             // Sort documents in categories
             for (var i = 0; i < categories.length; i++) {
                 var category = categories[i];
-                category.documents.sort(mindmaps.Document.sortByModifiedDateDescending);
+                category.documents.sort(mindmaps.Document.sortByCreatedDateAscending);
             }
 
             var $list = $content.find(".document-list-db");
@@ -55,7 +55,20 @@
             $("#template-open-table-item")
             .tmpl(categories)
             .appendTo($list);
-            $content.find("tbody.document-list-db").hide();
+
+            // hide all if no savedDoc
+            if (expandCategoryId === undefined) $content.find("tbody.document-list-db").hide();
+            else {
+                // loop all category
+                $content.find("tbody.document-list-db").each(function () {
+                    // get  category
+                    var category = $(this).tmplItem().data;
+                    if (expandCategoryId === category.id) return;
+
+                    // hide other category
+                    $(this).hide();
+                });
+            }
         });
     }
 
@@ -71,25 +84,27 @@
         this.captionEvent();
     };
 
-    this.documentClicked = function(doc) {
+    this.documentClicked = function (doc) {
         mindmaps.Util.trackEvent("Clicks", "localstorage-open");
         mindmapModel.setDocument(doc);
         editCommand.setEnabled(doc.canEdit);
         saveDocumentCommand.setEnabled(doc.canEdit);
     }
-    
+
     this.deleteDocumentClicked = function (doc) {
+        var self = this;
         var result = confirm("Delete document '" + doc.title + "'?");
         if (result) {
             // remove the document
-            MindMapServiceAPI.remove(doc);
+            MindMapServiceAPI.remove(doc, function () {
+                // re-render view
+                self.loadFiles(doc.category.id);
+            });
 
-            // re-render view
-            this.loadFiles();
         }
     }
 
     eventBus.subscribe(mindmaps.Event.DOCUMENT_SAVED, function () {
-        self.loadFiles();
+        self.loadFiles(0);
     });
 }

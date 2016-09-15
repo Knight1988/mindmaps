@@ -251,7 +251,8 @@ mindmaps.OpenDocumentPresenter = function(eventBus, mindmapModel, view, filePick
     * @param {mindmaps.Document} doc
     */
     view.deleteDocumentDbClicked = function(doc) {
-        MindMapServiceAPI.remove(doc, function() {
+        MindMapServiceAPI.remove(doc, function () {
+            eventBus.publish(mindmaps.Event.DOCUMENT_REMOVED, doc);
         }, function(msg) {
             view.showCloudError(msg);
         });

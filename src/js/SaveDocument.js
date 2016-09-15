@@ -144,7 +144,7 @@ mindmaps.SaveDocumentPresenter = function(eventBus, mindmapModel, view, autosave
         MindMapServiceAPI.save(Querystring.getInt("id", 0), doc,
             function () {
                 view.hideSaveDialog();
-                eventBus.publish(mindmaps.Event.DOCUMENT_SAVED);
+                eventBus.publish(mindmaps.Event.DOCUMENT_SAVED, doc);
             },
             function(e) {
                 //view.showCloudError(msg);
