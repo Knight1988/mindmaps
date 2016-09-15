@@ -2,12 +2,23 @@
 
 // ReSharper disable InconsistentNaming
 module MindMapServiceAPI {
+    export function getMainTitle(success?: (data: any, textStatus: string, jqXHR: JQueryXHR) => any,
+        error?: (jqXHR: JQueryXHR, textStatus: string, errorThrown: string) => any) {
+        $.ajax({
+            type: "POST",
+            url: "handles/GetMainTitle.ashx",
+            success: success,
+            error: error,
+            dataType: "json"
+        });
+    }
+
     export function load(id: string,
         success?: (data: any, textStatus: string, jqXHR: JQueryXHR) => any,
         error?: (jqXHR: JQueryXHR, textStatus: string, errorThrown: string) => any) {
         $.ajax({
             type: "POST",
-            url: "LoadFrom.ashx",
+            url: "handles/LoadFrom.ashx",
             data: { id: id },
             success: success,
             error: error,
@@ -21,7 +32,7 @@ module MindMapServiceAPI {
 
         $.ajax({
             type: "POST",
-            url: "SaveToDatabase.ashx",
+            url: "handles/SaveToDatabase.ashx",
             data: {
                 userId: userId,
                 doc: doc.serialize()
@@ -37,7 +48,7 @@ module MindMapServiceAPI {
         error?: (jqXHR: JQueryXHR, textStatus: string, errorThrown: string) => any) {
         $.ajax({
             type: "POST",
-            url: "RemoveFromDatabase.ashx",
+            url: "handles/RemoveFromDatabase.ashx",
             data: { userId: doc.userId, id: doc.id },
             success: success,
             error: error,
@@ -46,7 +57,7 @@ module MindMapServiceAPI {
     }
 
     export function getCategories(userId: number, success?: (data: any) => any, error?: (msg: string) => any) {
-        $.post("LoadFromDatabase.ashx",
+        $.post("handles/LoadFromDatabase.ashx",
             { userId: userId },
             (result: MindMapCategory) => {
                 const categories = parseData(userId, result);

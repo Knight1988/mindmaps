@@ -10,9 +10,6 @@ using Newtonsoft.Json;
 
 namespace MindMap.Bussiness
 {
-    /// <summary>
-    ///     Summary description for DocumentBussiness
-    /// </summary>
     public static class DocumentBussiness
     {
         private static readonly IDocumentDataAccess DataAccess = new DocumentDataAccess();

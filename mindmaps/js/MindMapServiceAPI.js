@@ -1,10 +1,20 @@
 // ReSharper disable InconsistentNaming
 var MindMapServiceAPI;
 (function (MindMapServiceAPI) {
+    function getMainTitle(success, error) {
+        $.ajax({
+            type: "POST",
+            url: "handles/GetMainTitle.ashx",
+            success: success,
+            error: error,
+            dataType: "json"
+        });
+    }
+    MindMapServiceAPI.getMainTitle = getMainTitle;
     function load(id, success, error) {
         $.ajax({
             type: "POST",
-            url: "LoadFrom.ashx",
+            url: "handles/LoadFrom.ashx",
             data: { id: id },
             success: success,
             error: error,
@@ -15,7 +25,7 @@ var MindMapServiceAPI;
     function save(userId, doc, success, error) {
         $.ajax({
             type: "POST",
-            url: "SaveToDatabase.ashx",
+            url: "handles/SaveToDatabase.ashx",
             data: {
                 userId: userId,
                 doc: doc.serialize()
@@ -29,7 +39,7 @@ var MindMapServiceAPI;
     function remove(doc, success, error) {
         $.ajax({
             type: "POST",
-            url: "RemoveFromDatabase.ashx",
+            url: "handles/RemoveFromDatabase.ashx",
             data: { userId: doc.userId, id: doc.id },
             success: success,
             error: error,
@@ -38,7 +48,7 @@ var MindMapServiceAPI;
     }
     MindMapServiceAPI.remove = remove;
     function getCategories(userId, success, error) {
-        $.post("LoadFromDatabase.ashx", { userId: userId }, function (result) {
+        $.post("handles/LoadFromDatabase.ashx", { userId: userId }, function (result) {
             var categories = parseData(userId, result);
             // success
             success(categories);
