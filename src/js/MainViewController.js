@@ -107,7 +107,7 @@ mindmaps.CanvasContainer.Event = {
  * @param {mindmaps.MindMapModel} mindmapModel
  * @param {mindmaps.InspectorView} view
  */
-mindmaps.MainViewController = function (eventBus, mindmapModel, commandRegistry) {
+mindmaps.MainViewController = function (eventBus, mindmapModel, commandRegistry, leftMenuController) {
     var zoomController = new mindmaps.ZoomController(eventBus, commandRegistry);
     var canvasContainer = new mindmaps.CanvasContainer();
     var databaseFileList = new mindmaps.DatabaseFileList(eventBus, mindmapModel, commandRegistry);
@@ -176,6 +176,11 @@ mindmaps.MainViewController = function (eventBus, mindmapModel, commandRegistry)
         MindMapServiceAPI.getMainTitle(function(value) {
             $("#main-title").html(value);
         });
+
+        canvasContainer.getContent().click(function() {
+            leftMenuController.collapse();
+        });
+
         eventBus.publish(mindmaps.Event.INITIALIZED);
     };
 };

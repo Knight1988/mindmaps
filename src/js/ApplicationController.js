@@ -123,7 +123,7 @@ mindmaps.ApplicationController = function() {
    */
   this.go = function() {
     var viewController = new mindmaps.MainViewController(eventBus,
-        mindmapModel, commandRegistry);
+        mindmapModel, commandRegistry, leftMenuController);
     viewController.go();
   };
 
