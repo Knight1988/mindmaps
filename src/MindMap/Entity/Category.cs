@@ -20,6 +20,12 @@ namespace MindMap.Entity
         [JsonProperty("isPublic")]
         public bool IsPublic { get; set; }
 
+        [JsonProperty("canEdit")]
+        public bool CanEdit { get; set; }
+
+        [JsonProperty("canView")]
+        public bool CanView { get; set; }
+
         [JsonProperty("documents")]
         public List<Document> Documents { get; set; }
     }

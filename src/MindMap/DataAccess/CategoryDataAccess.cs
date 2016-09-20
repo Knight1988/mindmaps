@@ -51,17 +51,16 @@ namespace MindMap.DataAccess
         }
 
         /// <summary>
-        /// Get all public categories & user private category
+        /// Get all categories
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<Category> GetPublicCategories()
+        public IEnumerable<Category> GetAllCategories()
         {
             using (var connection = Connection.NewConnection())
             {
                 const string cmdText = @"
 SELECT [t0].[Id], [t0].[Name], [t0].[IsPublic]
 FROM [MindMapCategory] AS [t0]
-WHERE ([t0].[IsPublic] = 1)
 ";
                 var cmd = new SqlCommand(cmdText.Trim(), connection);
                 connection.Open();
@@ -79,23 +78,6 @@ WHERE ([t0].[IsPublic] = 1)
                         yield return mindMapCategory;
                     }
                 }
-            }
-        }
-
-        public bool CheckPermission(int categoryId, int userId)
-        {
-            using (var connection = Connection.NewConnection())
-            {
-                const string cmdText = @"
-SELECT COUNT(*) AS [value]
-FROM [MindMapPermission] AS [t0]
-WHERE ([t0].[CategoryId] = @CategoryId) AND ([t0].[UserId] = @UserId)
-";
-                var cmd = new SqlCommand(cmdText, connection);
-                cmd.Parameters.Add("@UserId", SqlDbType.Int).Value = userId;
-                cmd.Parameters.Add("@CategoryId", SqlDbType.Int).Value = categoryId;
-                connection.Open();
-                return Convert.ToBoolean(cmd.ExecuteScalar());
             }
         }
     }

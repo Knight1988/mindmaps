@@ -31,6 +31,8 @@ mindmaps.Category.fromObject = function (obj) {
     var category = new mindmaps.Category();
     category.id = obj.id;
     category.name = obj.name;
+    category.canEdit = obj.canEdit;
+    category.canView = obj.canView;
 
     for (var i = 0; i < obj.documents.length; i++) {
         var doc = mindmaps.Document.fromObject(obj.documents[i]);

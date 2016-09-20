@@ -42,9 +42,16 @@
                 });
     }
 
+    // show/hide documents when click the captions
     this.captionEvent = function () {
         $content.delegate("th.title", "click", function () {
-            $(this).parents("table").find(".document-list-db").toggle();
+            var canView = $(this).attr("data-can-view") === "true";
+            if (canView) {
+                $(this).parents("table").find(".document-list-db").toggle();
+            }
+            else {
+                alert("You muse be VIP to view this.");
+            }
         });
     }
 

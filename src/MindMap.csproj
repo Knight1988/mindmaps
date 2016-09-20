@@ -178,16 +178,19 @@
     <Compile Include="MindMap\Bussiness\CategoryBussiness.cs" />
     <Compile Include="MindMap\Bussiness\DocumentBussiness.cs" />
     <Compile Include="MindMap\Bussiness\MainTitleBussiness.cs" />
+    <Compile Include="MindMap\Bussiness\PermissionBussiness.cs" />
     <Compile Include="MindMap\DataAccess\CategoryDataAccess.cs" />
     <Compile Include="MindMap\DataAccess\Connection.cs" />
     <Compile Include="MindMap\DataAccess\DocumentDataAccess.cs" />
     <Compile Include="MindMap\DataAccess\MainTitleDataAccess.cs" />
+    <Compile Include="MindMap\DataAccess\PermissionDataAccess.cs" />
     <Compile Include="MindMap\Entity\Category.cs" />
     <Compile Include="MindMap\Entity\Document.cs" />
     <Compile Include="MindMap\Extensions.cs" />
     <Compile Include="MindMap\Interface\ICategoryDataAccess.cs" />
     <Compile Include="MindMap\Interface\IDocumentDataAccess.cs" />
     <Compile Include="MindMap\Interface\IMainTitleDataAccess.cs" />
+    <Compile Include="MindMap\Interface\IPermissionDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

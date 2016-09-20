@@ -5,7 +5,7 @@
  */
 mindmaps.Document = function () {
     this.id = mindmaps.Util.createUUID();
-    this.userId = 0;
+    this.userId = Querystring.getInt("id", 0);
     this.categoryId = null;
     this.id = mindmaps.Util.createUUID();
     this.title = "New Document";

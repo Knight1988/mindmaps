@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using MindMap.DataAccess;
 using MindMap.Entity;
@@ -22,17 +21,28 @@ namespace MindMap.Bussiness
         public static List<Category> GetPublicCategories(int userId)
         {
             // get all public categories
-            var categories = DataAccess.GetPublicCategories().ToList();
+            var categories = DataAccess.GetAllCategories().ToList();
 
             // get all data in categories
             foreach (var category in categories)
             {
+                // get view permission
+                category.CanView = PermissionBussiness.CanView(category, userId);
+
+                // do not get documents if don't have view permission
+                if (!category.CanView)
+                {
+                    category.Documents = new List<Document>();
+                    continue;
+                }
+
                 // get documents
                 var documents = DocumentBussiness.GetDocumentInCategory(category.Id, userId);
 
                 // check permission
-                bool canEdit = DataAccess.CheckPermission(category.Id, userId);
+                var canEdit = PermissionBussiness.CanEdit(category.Id, userId);
 
+                // replace reference documents
                 if (canEdit) documents = documents.GetReferenceDocuments(userId).ToList();
 
                 category.Documents = documents;
@@ -76,14 +86,19 @@ namespace MindMap.Bussiness
         /// <returns></returns>
         public static Category GetPrivateCategory(int userId)
         {
-            return new Category()
+            var category = new Category()
             {
                 Id = 0,
                 UserId = userId,
-                IsPublic = true,
-                Name = "Private",
-                Documents = DocumentBussiness.GetUserPrivateDocument(userId)
+                IsPublic = false,
+                CanEdit = true,
+                Name = "Private"
             };
+
+            category.CanView = PermissionBussiness.CanView(category, userId);
+            category.Documents = category.CanView ? DocumentBussiness.GetUserPrivateDocument(userId) : new List<Document>();
+
+            return category;
         }
     }
 }
