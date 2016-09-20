@@ -76,8 +76,8 @@
     <Content Include="handles\LoadFromDatabase.ashx" />
     <Content Include="handles\RemoveFromDatabase.ashx" />
     <Content Include="handles\SaveToDatabase.ashx" />
-    <Content Include="cache.appcache" />
     <Content Include="MindMap\ClassDiagram.cd" />
+    <Content Include="cache.appcache" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -189,6 +189,9 @@
     <Compile Include="MindMap\Interface\IDocumentDataAccess.cs" />
     <Compile Include="MindMap\Interface\IMainTitleDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

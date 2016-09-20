@@ -1,12 +1,12 @@
 var fs = require("fs");
 
 var indexFileName       = "index.html";
-var srcDir              = "src/";
+var srcDir              = "MindMap/";
 var publishDir          = "bin/";
 var scriptFilename      = "script.js";
 var scriptDir           = "js/";
 var regexScriptSection  = /<!-- JS:LIB:BEGIN -->([\s\S]*?)<!-- JS:LIB:END -->/;
-var excludeFiles        = [ ".gitignore", ".git", "bin", "test", ".settings", "build",
+var excludeFiles        = [ ".gitignore", ".git", "bin", "obj", "test", ".settings", "build",
                             ".project", "README.md", "*psd", "*.psd", "*libs" ];
 var indexFile           = fs.readFileSync(srcDir + indexFileName, "utf8");
 

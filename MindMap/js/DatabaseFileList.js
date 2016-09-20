@@ -126,7 +126,7 @@
 
     eventBus.subscribe(mindmaps.Event.DOCUMENT_SAVED, function (doc) {
         var id = 0;
-        if (doc.category) id = doccategory.id;
+        if (doc.category) id = doc.category.id;
         self.loadFiles(id);
     });
 }

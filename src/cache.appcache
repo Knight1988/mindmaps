@@ -1,4 +1,3 @@
-CACHE MANIFEST
 # timestamp {{timestamp}}
 
 CACHE:
@@ -20,12 +19,17 @@ css/minicolors/jquery.miniColors.css
 css/common.css
 css/app.css
 css/about.css
-img/favicon.png
-img/creator-nub-sprite.png
-img/grid.gif
-img/plus-minus.png
-img/transparent.png
 img/ajax-loader.gif
+img/closedhand.png
+img/creator-nub-sprite.png
+img/delete.png
+img/favicon.png
+img/grid.gif
+img/openhand.png
+img/plus-minus.png
+img/restore.png
+img/transparent.png
+img/upload-image.png
 js/script.js
 media/downloadify.swf
 http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js

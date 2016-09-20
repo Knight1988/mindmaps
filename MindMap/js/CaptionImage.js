@@ -1,12 +1,17 @@
-var CaptionImage = (function () {
-    function CaptionImage() {
-    }
-    CaptionImage.find = function (selector) {
-        var captionImage = new CaptionImage();
-        captionImage.$img = $(selector);
-        return captionImage;
-    };
-    CaptionImage.prototype.setNode = function ($node, node) {
+/**
+ * Creates a new CaptionImage.
+ * 
+ * @constructor
+ */
+mindmaps.CaptionImage = function () {
+
+    /**
+    * Set the node which this image belong to.
+    * 
+    * @param {JQuery} $node
+    * @param {DOM} node
+    */
+    this.setNode = function ($node, node) {
         var _this = this;
         var self = this;
         node.captionImage = this;
@@ -21,20 +26,20 @@ var CaptionImage = (function () {
             src: "img/upload-image.png"
         })
             .mousedown(function (e) {
-            // avoid premature canceling
-            e.stopPropagation();
-        })
+                // avoid premature canceling
+                e.stopPropagation();
+            })
             .css({
-            "border-radius": "50%",
-            width: 100,
-            height: 100,
-            visibility: "hidden",
-            "z-index": 100
-        })
+                "border-radius": "50%",
+                width: 100,
+                height: 100,
+                visibility: "hidden",
+                "z-index": 100
+            })
             .click(function () {
-            if (self.isEditing)
-                _this.imageUpload.selectImage();
-        });
+                if (self.isEditing)
+                    _this.imageUpload.selectImage();
+            });
         if (node.isRoot()) {
             if (node.img) {
                 this.$img.attr("src", node.img);
@@ -57,16 +62,28 @@ var CaptionImage = (function () {
             this.$img.prependTo($node);
         }
     };
-    CaptionImage.prototype.zoom = function () {
-    };
-    CaptionImage.prototype.startEditMode = function () {
+
+    /**
+    * Changes the size of the image to match with with the new zoom
+    * factor.
+    */
+    this.zoom = function () { };
+
+    /**
+    * Start the edit mode
+    */
+    this.startEditMode = function () {
         this.isEditing = true;
         this.$img.css({
             cursor: "pointer",
             visibility: ""
         });
     };
-    CaptionImage.prototype.endEditMode = function () {
+
+    /**
+    * End of edit mode
+    */
+    this.endEditMode = function () {
         this.isEditing = false;
         var src = this.$img.attr("src");
         var isUploaded = src.indexOf("img/upload-image.png");
@@ -75,6 +92,15 @@ var CaptionImage = (function () {
             visibility: isUploaded === -1 ? "" : "hidden"
         });
     };
-    return CaptionImage;
-}());
-//# sourceMappingURL=CaptionImage.js.map
+}
+
+/**
+* Find the image
+* 
+* @param {JQuery} selector
+*/
+mindmaps.CaptionImage.find = function (selector) {
+    var captionImage = new CaptionImage();
+    captionImage.$img = $(selector);
+    return captionImage;
+};
