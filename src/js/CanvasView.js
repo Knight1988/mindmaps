@@ -407,7 +407,7 @@ mindmaps.DefaultCanvasView = function() {
       "text-decoration" : font.decoration
     }).appendTo($node);
 
-    var imgCaption = new CaptionImage();
+    var imgCaption = new mindmaps.CaptionImage();
     imgCaption.setNode($node, node);
 
     var metrics = textMetrics.getTextMetrics(node, this.zoomFactor);

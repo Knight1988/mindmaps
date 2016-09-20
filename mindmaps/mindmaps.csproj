@@ -83,6 +83,6 @@
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(ProjectDir)js\*.js" "$(SolutionDir)src\js" /YI</PostBuildEvent>
+    <PostBuildEvent>xcopy "$(ProjectDir)js\MindMapServiceAPI.js" "$(SolutionDir)src\js" /YI</PostBuildEvent>
   </PropertyGroup>
 </Project>

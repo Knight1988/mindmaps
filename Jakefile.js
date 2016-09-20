@@ -1,8 +1,8 @@
 var fs = require("fs");
 
 var indexFileName       = "index.html";
-var srcDir              = "MindMap/";
-var publishDir          = "release/";
+var srcDir              = "src/";
+var publishDir          = "bin/";
 var scriptFilename      = "script.js";
 var scriptDir           = "js/";
 var regexScriptSection  = /<!-- JS:LIB:BEGIN -->([\s\S]*?)<!-- JS:LIB:END -->/;
