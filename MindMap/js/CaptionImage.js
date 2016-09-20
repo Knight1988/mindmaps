@@ -4,7 +4,7 @@
  * @constructor
  */
 mindmaps.CaptionImage = function () {
-
+    var self = this;
     /**
     * Set the node which this image belong to.
     * 
@@ -12,12 +12,10 @@ mindmaps.CaptionImage = function () {
     * @param {DOM} node
     */
     this.setNode = function ($node, node) {
-        var _this = this;
-        var self = this;
         node.captionImage = this;
-        this.imageUpload = new ImageUpload();
+        this.imageUpload = new mindmaps.ImageUpload();
         this.imageUpload.onUploaded = function (url) {
-            _this.$img.attr("src", url);
+            self.$img.attr("src", url);
             node.img = url;
         };
         // image caption
@@ -38,7 +36,7 @@ mindmaps.CaptionImage = function () {
             })
             .click(function () {
                 if (self.isEditing)
-                    _this.imageUpload.selectImage();
+                    self.imageUpload.selectImage();
             });
         if (node.isRoot()) {
             if (node.img) {

@@ -1,26 +1,40 @@
-var ImageUpload = (function () {
-    function ImageUpload() {
+/**
+ * Creates a new ImageUpload.
+ * 
+ * @constructor
+ */
+mindmaps.ImageUpload = function () {
+    var self = this;
+
+    /**
+    * Initializes the uploader.
+    * event bus.
+    */
+    this.init = function () {
         this.asDataUrl = true;
-        var self = this;
         this.$input = $("<input/>", { type: "file" })
             .change(function () {
-            var file = this.files[0];
-            // file no length
-            if (file.name.length < 1) {
-                return;
-            }
-            else if (file.type !== "image/png" &&
-                file.type !== "image/jpg" &&
-                file.type !== "image/gif" &&
-                file.type !== "image/jpeg") {
-                alert("The file does not match png, jpg or gif");
-                return;
-            }
-            // upload file
-            self.asDataUrl ? self.fileToDataUrl() : self.uploadFileToServer();
-        });
+                var file = this.files[0];
+                // file no length
+                if (file.name.length < 1) {
+                    return;
+                }
+                else if (file.type !== "image/png" &&
+                    file.type !== "image/jpg" &&
+                    file.type !== "image/gif" &&
+                    file.type !== "image/jpeg") {
+                    alert("The file does not match png, jpg or gif");
+                    return;
+                }
+                // upload file
+                self.asDataUrl ? self.fileToDataUrl() : self.uploadFileToServer();
+            });
     }
-    ImageUpload.prototype.fileToDataUrl = function () {
+
+    /**
+    * Convert uploaded image to base64
+    */
+    this.fileToDataUrl = function () {
         var self = this;
         var input = self.$input[0];
         var file = input.files[0];
@@ -30,7 +44,11 @@ var ImageUpload = (function () {
             reader.readAsDataURL(file);
         }
     };
-    ImageUpload.prototype.uploadFileToServer = function () {
+
+    /**
+    * Upload image to server
+    */
+    this.uploadFileToServer = function () {
         var self = this;
         var formData = new FormData();
         var input = self.$input[0];
@@ -56,11 +74,23 @@ var ImageUpload = (function () {
             }
         });
     };
-    ImageUpload.prototype.onUploaded = function (url) { };
-    ImageUpload.prototype.onError = function () { };
-    ImageUpload.prototype.selectImage = function () {
+
+    /**
+    * Uploaded event
+    */
+    this.onUploaded = function (url) { };
+
+    /**
+    * On error event
+    */
+    this.onError = function () { };
+
+    /**
+    * Select image for upload
+    */
+    this.selectImage = function () {
         this.$input.click();
     };
-    return ImageUpload;
-}());
-//# sourceMappingURL=ImageUpload.js.map
+
+    this.init();
+}

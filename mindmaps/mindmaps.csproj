@@ -28,8 +28,6 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="app.ts" />
-    <TypeScriptCompile Include="js\CaptionImage.ts" />
-    <TypeScriptCompile Include="js\ImageUpload.ts" />
     <TypeScriptCompile Include="js\MindMapDocument.ts" />
     <TypeScriptCompile Include="js\MindMapServiceAPI.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
