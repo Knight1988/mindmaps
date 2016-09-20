@@ -258,11 +258,6 @@ mindmaps.CanvasPresenter = function(eventBus, commandRegistry, mindmapModel,
         view.isEditing = true;
     });
 
-    eventBus.subscribe(mindmaps.Event.DOCUMENT_SAVED, function () {
-        view.getCreator().detach();
-        view.isEditing = false;
-    });
-
     eventBus.subscribe(mindmaps.Event.NODE_MOVED, function(node) {
       view.positionNode(node);
     });

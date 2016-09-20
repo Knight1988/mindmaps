@@ -93,7 +93,7 @@
     };
 
     this.documentClicked = function (doc) {
-        mindmaps.Util.trackEvent("Clicks", "localstorage-open");
+        mindmaps.Util.trackEvent("Clicks", "database-open");
         mindmapModel.setDocument(doc);
         editCommand.setEnabled(doc.canEdit);
         saveDocumentCommand.setEnabled(doc.canEdit);
@@ -128,5 +128,6 @@
         var id = 0;
         if (doc.category) id = doc.category.id;
         self.loadFiles(id);
+        self.documentClicked(doc);
     });
 }

@@ -5,10 +5,6 @@
         eventBus.publish(mindmaps.Event.DOCUMENT_EDIT);
     });
 
-    eventBus.subscribe(mindmaps.Event.DOCUMENT_SAVED, function() {
-        editCommand.setVisible(true);
-    });
-
     eventBus.subscribe(mindmaps.Event.DOCUMENT_CREATED, function() {
         editCommand.setVisible(false);
         eventBus.publish(mindmaps.Event.DOCUMENT_EDIT);

@@ -106,10 +106,6 @@ mindmaps.ApplicationController = function() {
       saveDocumentCommand.setVisible(true);
     });
 
-    eventBus.subscribe(mindmaps.Event.DOCUMENT_SAVED, function() {
-      saveDocumentCommand.setVisible(false);
-    });
-
     eventBus.subscribe(mindmaps.Event.INITIALIZED, function () {
       saveDocumentCommand.setVisible(false);
     });
