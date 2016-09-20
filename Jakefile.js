@@ -2,7 +2,7 @@ var fs = require("fs");
 
 var indexFileName       = "index.html";
 var srcDir              = "src/";
-var publishDir          = "MindMap/";
+var publishDir          = "bin/";
 var scriptFilename      = "script.js";
 var scriptDir           = "js/";
 var regexScriptSection  = /<!-- JS:LIB:BEGIN -->([\s\S]*?)<!-- JS:LIB:END -->/;
