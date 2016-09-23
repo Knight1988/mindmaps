@@ -201,16 +201,18 @@ mindmaps.CanvasPresenter = function(eventBus, commandRegistry, mindmapModel,
    * @ignore
    * @param {mindmaps.Node} node
    * @param {String} str
+   * @param {String} tooltip
    */
-  view.nodeCaptionEditCommitted = function(node, str) {
+  view.nodeCaptionEditCommitted = function(node, str, tooltip) {
     // avoid whitespace only strings
-    var str = $.trim(str);
+    str = $.trim(str);
+    tooltip = $.trim(tooltip);
     if (!str) {
       return;
     }
 
     view.stopEditNodeCaption();
-    mindmapModel.changeNodeCaption(node, str);
+    mindmapModel.changeNodeCaption(node, str, tooltip);
   };
 
   this.go = function() {

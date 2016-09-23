@@ -322,7 +322,37 @@ html, body {
     background-position: -24px 0;
 }
 
-#caption-editor {
+.node-caption .tooltip {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    top: 150%;
+    left: 50%;
+    margin-left: -60px;
+}
+
+.node-caption .tooltip::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent black transparent;
+}
+
+.node-caption:hover .tooltip {
+    visibility: visible;
+}
+
+.caption-editor {
     display: block; /** important for webkit */
     resize: none;
     background: none;

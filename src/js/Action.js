@@ -214,21 +214,27 @@ mindmaps.action.CloseNodeAction.prototype = new mindmaps.action.Action();
  * @augments mindmaps.action.Action
  * @param {mindmaps.Node} node
  * @param {String} caption
+ * @param {String} tooltip
  */
-mindmaps.action.ChangeNodeCaptionAction = function(node, caption) {
+mindmaps.action.ChangeNodeCaptionAction = function(node, caption, tooltip) {
   var oldCaption = node.getCaption();
+  var oldTooltip = node.getTooltip();
 
   this.execute = function() {
     // dont update if nothing has changed
-    if (oldCaption === caption) {
-      return false;
+    if (oldCaption !== caption) {
+        node.setCaption(caption);
     }
-    node.setCaption(caption);
+
+    if (oldTooltip !== tooltip) {
+        node.setTooltip(tooltip);
+    }
+    
   };
 
   this.event = [ mindmaps.Event.NODE_TEXT_CAPTION_CHANGED, node ];
   this.undo = function() {
-    return new mindmaps.action.ChangeNodeCaptionAction(node, oldCaption);
+    return new mindmaps.action.ChangeNodeCaptionAction(node, oldCaption, oldTooltip);
   };
 };
 mindmaps.action.ChangeNodeCaptionAction.prototype = new mindmaps.action.Action();

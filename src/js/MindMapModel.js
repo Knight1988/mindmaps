@@ -164,13 +164,14 @@ mindmaps.MindMapModel = function(eventBus, commandRegistry, undoController) {
    * 
    * @param {mindmaps.Node} node
    * @param {String} caption
+   * @param {String} tooltip
    */
-  this.changeNodeCaption = function(node, caption) {
+  this.changeNodeCaption = function(node, caption, tooltip) {
     if (!node) {
       node = this.selectedNode;
     }
 
-    var action = new mindmaps.action.ChangeNodeCaptionAction(node, caption);
+    var action = new mindmaps.action.ChangeNodeCaptionAction(node, caption, tooltip);
     this.executeAction(action);
   };
 
