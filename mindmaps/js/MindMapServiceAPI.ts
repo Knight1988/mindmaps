@@ -13,12 +13,12 @@ module MindMapServiceAPI {
         });
     }
 
-    export function load(id: string,
+    export function load(id: string, userId: number,
         success?: (data: any, textStatus: string, jqXHR: JQueryXHR) => any,
         error?: (jqXHR: JQueryXHR, textStatus: string, errorThrown: string) => any) {
         $.ajax({
             type: "POST",
-            url: "handles/LoadFrom.ashx",
+            url: "handles/Load.ashx",
             data: { id: id },
             success: success,
             error: error,

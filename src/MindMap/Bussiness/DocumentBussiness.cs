@@ -21,6 +21,13 @@ namespace MindMap.Bussiness
             return Path.Combine(path, string.Format("{0}.json", id));
         }
 
+        public static Document Load(Guid id, int userId)
+        {
+            var doc =  DataAccess.Load(id);
+            // Load the document data
+            return doc.LoadDocumentData(userId);
+        }
+
         /// <summary>
         ///     Save mindmap data to file & database
         /// </summary>

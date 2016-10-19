@@ -101,9 +101,13 @@
 
     this.documentClicked = function (doc) {
         mindmaps.Util.trackEvent("Clicks", "database-open");
-        mindmapModel.setDocument(doc);
-        editCommand.setEnabled(doc.canEdit);
-        saveDocumentCommand.setEnabled(doc.canEdit);
+        var userId = Querystring.getInt("id", 0);
+        MindMapServiceAPI.load(doc.id, userId, function (document) {
+            doc = mindmaps.Document.fromObject(document);
+            mindmapModel.setDocument(doc);
+            editCommand.setEnabled(doc.canEdit);
+            saveDocumentCommand.setEnabled(doc.canEdit);
+        });
     }
 
     this.deleteDocumentClicked = function (doc) {

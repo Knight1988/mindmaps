@@ -150,16 +150,31 @@ WHERE ([t0].[UserId] = @UserId) AND ([t0].[ParentId] = @ParentId)
                 connection.Open();
                 using (var r = cmd.ExecuteReader())
                 {
-                    if (r.Read())
-                    {
-                        return ParseDocument(r);
-                    }
-                    return null;
+                    return r.Read() ? ParseDocument(r) : null;
                 }
             }
         }
 
-        private Document ParseDocument(IDataReader r)
+        public Document Load(Guid id)
+        {
+            using (var connection = Connection.NewConnection())
+            {
+                const string cmdText = @"
+SELECT [t0].[Id], [t0].[UserId], [t0].[CategoryId], [t0].[ParentId]
+FROM [MindMapDocument] AS [t0]
+WHERE [t0].[Id] = @Id
+";
+                var cmd = new SqlCommand(cmdText.Trim(), connection);
+                cmd.Parameters.Add("@Id", SqlDbType.UniqueIdentifier).Value = id;
+                connection.Open();
+                using (var r = cmd.ExecuteReader())
+                {
+                    return r.Read() ? ParseDocument(r) : null;
+                }
+            }
+        }
+
+        private static Document ParseDocument(IDataRecord r)
         {
             return new Document()
             {

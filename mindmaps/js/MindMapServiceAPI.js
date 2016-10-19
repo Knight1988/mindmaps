@@ -11,10 +11,10 @@ var MindMapServiceAPI;
         });
     }
     MindMapServiceAPI.getMainTitle = getMainTitle;
-    function load(id, success, error) {
+    function load(id, userId, success, error) {
         $.ajax({
             type: "POST",
-            url: "handles/LoadFrom.ashx",
+            url: "handles/Load.ashx",
             data: { id: id },
             success: success,
             error: error,

@@ -78,6 +78,7 @@
     <Content Include="handles\SaveToDatabase.ashx" />
     <Content Include="MindMap\ClassDiagram.cd" />
     <Content Include="cache.appcache" />
+    <Content Include="handles\Load.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -175,6 +176,9 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="handles\Load.ashx.cs">
+      <DependentUpon>Load.ashx</DependentUpon>
+    </Compile>
     <Compile Include="MindMap\Bussiness\CategoryBussiness.cs" />
     <Compile Include="MindMap\Bussiness\DocumentBussiness.cs" />
     <Compile Include="MindMap\Bussiness\MainTitleBussiness.cs" />

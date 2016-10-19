@@ -60,5 +60,12 @@ namespace MindMap.Interface
         /// <param name="userId"></param>
         /// <returns></returns>
         Document GetReferenceDocument(Guid docId, int userId);
+
+        /// <summary>
+        /// Load the document
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Document Load(Guid id);
     }
 }
