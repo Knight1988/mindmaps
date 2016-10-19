@@ -16,11 +16,12 @@ namespace MindMap.DataAccess
         {
             using (var connection = Connection.NewConnection())
             {
-                const string cmdText = "INSERT INTO [MindMapDocument] (Id, UserId, ParentId) VALUES (@Id, @UserId, @ParentId)";
+                const string cmdText = "INSERT INTO [MindMapDocument] (Id, UserId, ParentId, HeaderText) VALUES (@Id, @UserId, @ParentId, @HeaderText)";
                 var cmd = new SqlCommand(cmdText, connection);
                 cmd.Parameters.Add("@Id", SqlDbType.UniqueIdentifier).Value = document.Id;
                 cmd.Parameters.Add("@UserId", SqlDbType.Int).Value = document.UserId;
                 cmd.Parameters.Add("@ParentId", SqlDbType.UniqueIdentifier).Value = (object)document.ParentId ?? DBNull.Value;
+                cmd.Parameters.Add("@HeaderText", SqlDbType.NVarChar).Value = document.Title;
                 connection.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -30,10 +31,11 @@ namespace MindMap.DataAccess
         {
             using (var connection = Connection.NewConnection())
             {
-                const string cmdText = "UPDATE [MindMapDocument] SET UserId = @UserId WHERE Id = @Id";
+                const string cmdText = "UPDATE [MindMapDocument] SET UserId = @UserId, HeaderText = @HeaderText WHERE Id = @Id";
                 var cmd = new SqlCommand(cmdText, connection);
                 cmd.Parameters.Add("@Id", SqlDbType.UniqueIdentifier).Value = document.Id;
                 cmd.Parameters.Add("@UserId", SqlDbType.Int).Value = document.UserId;
+                cmd.Parameters.Add("@HeaderText", SqlDbType.NVarChar).Value = document.Title;
                 connection.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -79,10 +81,7 @@ WHERE ([t0].[Id] = @Id) AND ([t0].[UserId] = @UserId)
                 {
                     while (r.Read())
                     {
-                        var mindMapData = new Document((Guid) r["Id"], Convert.ToInt32(r["CategoryId"]),
-                            Convert.ToInt32(r["UserId"]));
-
-                        yield return mindMapData;
+                        yield return ParseDocument(r);
                     }
                 }
             }
@@ -93,7 +92,7 @@ WHERE ([t0].[Id] = @Id) AND ([t0].[UserId] = @UserId)
             using (var connection = Connection.NewConnection())
             {
                 const string cmdText = @"
-SELECT [t0].[Id], [t0].[UserId], [t0].[CategoryId], [t0].[ParentId]
+SELECT [t0].[Id], [t0].[UserId], [t0].[CategoryId], [t0].[ParentId], [t0].[HeaderText]
 FROM [MindMapDocument] AS [t0]
 WHERE [t0].[CategoryId] = @CategoryId";
                 var cmd = new SqlCommand(cmdText.Trim(), connection);
@@ -103,10 +102,7 @@ WHERE [t0].[CategoryId] = @CategoryId";
                 {
                     while (r.Read())
                     {
-                        var mindMapData = new Document((Guid) r["Id"], Convert.ToInt32(r["CategoryId"]),
-                            Convert.ToInt32(r["UserId"]));
-
-                        yield return mindMapData;
+                        yield return ParseDocument(r);
                     }
                 }
             }
@@ -117,7 +113,7 @@ WHERE [t0].[CategoryId] = @CategoryId";
             using (var connection = Connection.NewConnection())
             {
                 const string cmdText = @"
-SELECT [t0].[Id], [t0].[UserId], [t0].[CategoryId], [t0].[ParentId]
+SELECT [t0].[Id], [t0].[UserId], [t0].[CategoryId], [t0].[ParentId], [t0].[HeaderText]
 FROM [MindMapDocument] AS [t0]
 WHERE ([t0].[CategoryId] IS NULL) AND ([t0].[UserId] = @UserId) AND ([t0].[ParentId] IS NULL)
 ";
@@ -140,7 +136,7 @@ WHERE ([t0].[CategoryId] IS NULL) AND ([t0].[UserId] = @UserId) AND ([t0].[Paren
             using (var connection = Connection.NewConnection())
             {
                 const string cmdText = @"
-SELECT [t0].[Id], [t0].[UserId], [t0].[CategoryId], [t0].[ParentId]
+SELECT [t0].[Id], [t0].[UserId], [t0].[CategoryId], [t0].[ParentId], [t0].[HeaderText]
 FROM [MindMapDocument] AS [t0]
 WHERE ([t0].[UserId] = @UserId) AND ([t0].[ParentId] = @ParentId)
 ";
@@ -160,7 +156,7 @@ WHERE ([t0].[UserId] = @UserId) AND ([t0].[ParentId] = @ParentId)
             using (var connection = Connection.NewConnection())
             {
                 const string cmdText = @"
-SELECT [t0].[Id], [t0].[UserId], [t0].[CategoryId], [t0].[ParentId]
+SELECT [t0].[Id], [t0].[UserId], [t0].[CategoryId], [t0].[ParentId], [t0].[HeaderText]
 FROM [MindMapDocument] AS [t0]
 WHERE [t0].[Id] = @Id
 ";
@@ -181,7 +177,8 @@ WHERE [t0].[Id] = @Id
                 Id = (Guid)r["Id"],
                 CategoryId = r["CategoryId"] as int?,
                 UserId = Convert.ToInt32(r["UserId"]),
-                ParentId = r["ParentId"] as Guid?
+                ParentId = r["ParentId"] as Guid?,
+                Title = r["HeaderText"].ToString()
             };
         }
     }

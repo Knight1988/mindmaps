@@ -9,17 +9,6 @@ namespace MindMap.Entity
     [JsonObject(MemberSerialization.OptIn)]
     public class Document
     {
-        public Document()
-        {
-        }
-
-        public Document(Guid id, int categoryId, int userId)
-        {
-            Id = id;
-            CategoryId = categoryId;
-            UserId = userId;
-        }
-
         [JsonProperty("id")]
         public Guid Id { get; set; }
 
@@ -45,7 +34,7 @@ namespace MindMap.Entity
         public bool Autosave { get; set; }
 
         [JsonProperty("canEdit")]
-        public bool? CanEdit { get; set; }
+        public bool CanEdit { get; set; }
 
         [JsonProperty("parentId")]
         public Guid? ParentId { get; set; }

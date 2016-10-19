@@ -47,21 +47,22 @@ mindmaps.Document.fromObject = function (obj) {
     doc.categoryId = obj.categoryId;
     doc.parentId = obj.parentId;
     doc.title = obj.parentId ? obj.title + "*" : obj.title;
-    doc.mindmap = mindmaps.MindMap.fromObject(obj.mindmap);
-    doc.dates = {
-        created: new Date(obj.dates.created),
-        modified: obj.dates.modified ? new Date(obj.dates.modified) : null,
-        format: function (date) {
-            if (!date) return "";
+    if (obj.mindmap) doc.mindmap = mindmaps.MindMap.fromObject(obj.mindmap);
+    if (obj.dates)
+        doc.dates = {
+            created: new Date(obj.dates.created),
+            modified: obj.dates.modified ? new Date(obj.dates.modified) : null,
+            format: function (date) {
+                if (!date) return "";
 
-            var day = date.getDate();
-            var month = date.getMonth() + 1;
-            var year = date.getFullYear();
-            return day + "/" + month + "/" + year;
-        }
-    };
+                var day = date.getDate();
+                var month = date.getMonth() + 1;
+                var year = date.getFullYear();
+                return day + "/" + month + "/" + year;
+            }
+        };
 
-    doc.dimensions = mindmaps.Point.fromObject(obj.dimensions);
+    if (obj.dimensions) doc.dimensions = mindmaps.Point.fromObject(obj.dimensions);
     doc.canEdit = obj.canEdit;
     doc.canDelete = obj.canDelete;
     doc.canRestore = obj.canRestore;

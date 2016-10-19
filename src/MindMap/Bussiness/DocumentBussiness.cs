@@ -25,7 +25,11 @@ namespace MindMap.Bussiness
         {
             var doc =  DataAccess.Load(id);
             // Load the document data
-            return doc.LoadDocumentData(userId);
+            doc = doc.LoadDocumentData();
+            // check permission
+            doc.CanEdit = doc.UserId == userId;
+            if (doc.CategoryId != null) doc.CanEdit = doc.CanEdit || PermissionBussiness.CanEdit(doc.CategoryId.Value, userId);
+            return doc;
         }
 
         /// <summary>
@@ -58,9 +62,8 @@ namespace MindMap.Bussiness
         ///     Load document from file
         /// </summary>
         /// <param name="doc"></param>
-        /// <param name="userId">userId to check editable</param>
         /// <returns></returns>
-        private static Document LoadDocumentData(this Document doc, int userId)
+        private static Document LoadDocumentData(this Document doc)
         {
             // get file path
             var path = GetFilePath(doc.Id);
@@ -77,7 +80,7 @@ namespace MindMap.Bussiness
         }
 
         /// <summary>
-        ///     Check if document has data, delete from db if not exist
+        ///     Check if document has data
         /// </summary>
         /// <param name="doc"></param>
         /// <returns></returns>
@@ -87,11 +90,7 @@ namespace MindMap.Bussiness
             var path = GetFilePath(doc.Id);
 
             // check if data file exist
-            if (File.Exists(path)) return true;
-
-            // delete the data
-            Delete(doc.Id, doc.UserId);
-            return false;
+            return File.Exists(path);
         }
 
         public static List<Document> GetDocumentInCategory(int categoryId, int userId)
@@ -99,7 +98,7 @@ namespace MindMap.Bussiness
             return
                 DataAccess.GetDocumentInCategory(categoryId, userId)
                     .Where(HasData)
-                    .Select(p => LoadDocumentData(p, userId))
+                    //.Select(p => LoadDocumentData(p, false))
                     .ToList();
         }
 
@@ -117,7 +116,7 @@ namespace MindMap.Bussiness
             return
                 DataAccess.GetUserPrivateDocuments(userId)
                     .Where(HasData)
-                    .Select(p => LoadDocumentData(p, userId))
+                    //.Select(p => LoadDocumentData(p, false))
                     .Select(p =>
                     {
                         p.CanEdit = true;// enable edit for private documents
@@ -131,7 +130,7 @@ namespace MindMap.Bussiness
         {
             var doc = DataAccess.GetReferenceDocument(docId, userId);
             if (doc == null) return null;
-            doc = doc.LoadDocumentData(userId);
+            //doc = doc.LoadDocumentData(false);
             return doc;
         }
     }

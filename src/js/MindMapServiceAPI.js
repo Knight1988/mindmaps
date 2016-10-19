@@ -15,7 +15,7 @@ var MindMapServiceAPI;
         $.ajax({
             type: "POST",
             url: "handles/Load.ashx",
-            data: { id: id },
+            data: { id: id, userId: userId },
             success: success,
             error: error,
             dataType: "json"
