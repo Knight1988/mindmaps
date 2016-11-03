@@ -66,7 +66,7 @@ mindmaps.Document.fromObject = function (obj) {
     doc.canEdit = obj.canEdit;
     doc.canDelete = obj.canDelete;
     doc.canRestore = obj.canRestore;
-    doc.autosave = obj.autosave;
+    doc.autosave = false;//obj.autosave;
 
     return doc;
 };
