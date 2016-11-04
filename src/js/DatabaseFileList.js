@@ -2,6 +2,7 @@
     var self = this;
     var $content = $("#db-filelist");
     var editCommand = commandRegistry.get(mindmaps.EditCommand);
+    var newCommand = commandRegistry.get(mindmaps.NewDocumentCommand);
     var saveDocumentCommand = commandRegistry.get(mindmaps.SaveDocumentCommand);
 
     /**
@@ -63,6 +64,9 @@
                 var category = categories[i];
                 category.documents.sort(mindmaps.Document.sortByCreatedDateAscending);
             }
+
+            // enable new document if VIP
+            if (categories[categories.length-1].canView) newCommand.setEnabled(true);
 
             var $list = $content.find(".document-list-db");
             $list.empty();

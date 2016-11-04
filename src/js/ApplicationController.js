@@ -78,7 +78,7 @@ mindmaps.ApplicationController = function() {
     var newDocumentCommand = commandRegistry
         .get(mindmaps.NewDocumentCommand);
     newDocumentCommand.setHandler(doNewDocument);
-    newDocumentCommand.setEnabled(true);
+    newDocumentCommand.setEnabled(false);
 
     var openDocumentCommand = commandRegistry
         .get(mindmaps.OpenDocumentCommand);
