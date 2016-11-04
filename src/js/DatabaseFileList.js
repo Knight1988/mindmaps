@@ -66,7 +66,7 @@
             }
 
             // enable new document if VIP
-            if (categories[categories.length-1].canView) newCommand.setEnabled(true);
+            if (categories[categories.length - 1].canView) mindmapModel.isVip = true;
 
             var $list = $content.find(".document-list-db");
             $list.empty();

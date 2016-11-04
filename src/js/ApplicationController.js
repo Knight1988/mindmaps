@@ -26,6 +26,11 @@ mindmaps.ApplicationController = function() {
    * Handles the new document command.
    */
   function doNewDocument() {
+      if (!mindmapModel.isVip) {
+          alert("You muse be VIP to create document.");
+          return;
+      }
+
     // close old document first
     var doc = mindmapModel.getDocument();
     doCloseDocument();
@@ -78,7 +83,7 @@ mindmaps.ApplicationController = function() {
     var newDocumentCommand = commandRegistry
         .get(mindmaps.NewDocumentCommand);
     newDocumentCommand.setHandler(doNewDocument);
-    newDocumentCommand.setEnabled(false);
+    newDocumentCommand.setEnabled(true);
 
     var openDocumentCommand = commandRegistry
         .get(mindmaps.OpenDocumentCommand);
