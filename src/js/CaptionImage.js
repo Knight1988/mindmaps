@@ -29,8 +29,8 @@ mindmaps.CaptionImage = function () {
             })
             .css({
                 "border-radius": "15%",
-                width: 100,
-                height: 100,
+                width: self.baseWidth = 100,
+                height: self.baseHeight = 100,
                 visibility: "hidden",
                 "z-index": 100
             })
@@ -44,8 +44,8 @@ mindmaps.CaptionImage = function () {
                 this.$img.css({ visibility: "" });
             }
             this.$img.css({
-                width: 120,
-                height: 120,
+                width: self.baseWidth = 120,
+                height: self.baseHeight = 120,
                 top: -120,
                 left: -25,
                 position: "relative"
@@ -65,7 +65,12 @@ mindmaps.CaptionImage = function () {
     * Changes the size of the image to match with with the new zoom
     * factor.
     */
-    this.zoom = function () { };
+    this.zoom = function(zoomFactor) {
+        this.$img.css({
+            width: self.baseWidth * zoomFactor,
+            height: self.baseHeight * zoomFactor
+        });
+    };
 
     /**
     * Start the edit mode

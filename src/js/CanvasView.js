@@ -750,6 +750,7 @@ mindmaps.DefaultCanvasView = function () {
 
         function scale(node, depth) {
             var $node = $getNode(node);
+            node.captionImage.zoom(zoomFactor);
 
             // draw border and position manually
             var bWidth = self.getLineWidth(depth);
