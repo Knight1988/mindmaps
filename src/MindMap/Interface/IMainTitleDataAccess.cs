@@ -1,4 +1,6 @@
-﻿namespace MindMap.Interface
+﻿using System;
+
+namespace MindMap.Interface
 {
     public interface IMainTitleDataAccess
     {
@@ -12,5 +14,7 @@
         /// </summary>
         /// <param name="value"></param>
         void SetMainTitle(string value);
+
+        Guid GetDefaultDocumentId();
     }
 }

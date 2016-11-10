@@ -13,7 +13,13 @@ namespace MindMap.Bussiness
     public static class DocumentBussiness
     {
         private static readonly IDocumentDataAccess DataAccess = new DocumentDataAccess();
+        private static readonly IMainTitleDataAccess MainTitleDataAccess = new MainTitleDataAccess();
 
+        /// <summary>
+        /// Gets the document path.
+        /// </summary>
+        /// <param name="id">The identifier of document</param>
+        /// <returns>System.String.</returns>
         public static string GetFilePath(Guid id)
         {
             var path = HttpContext.Current.Server.MapPath("~/App_Data/mindmap/");
@@ -21,6 +27,12 @@ namespace MindMap.Bussiness
             return Path.Combine(path, string.Format("{0}.json", id));
         }
 
+        /// <summary>
+        /// Loads the document.
+        /// </summary>
+        /// <param name="id">The identifier of document.</param>
+        /// <param name="userId">The user identifier.</param>
+        /// <returns>Document.</returns>
         public static Document Load(Guid id, int userId)
         {
             var doc =  DataAccess.Load(id);
@@ -33,11 +45,21 @@ namespace MindMap.Bussiness
         }
 
         /// <summary>
-        ///     Save mindmap data to file & database
+        /// Loads the default document.
         /// </summary>
-        /// <param name="userId"></param>
-        /// <param name="doc"></param>
-        /// <returns></returns>
+        /// <param name="userId">The user identifier.</param>
+        /// <returns>Document.</returns>
+        public static Document LoadDefaultDocument(int userId)
+        {
+            var id = MainTitleDataAccess.GetDefaultDocumentId();
+            return Load(id, userId);
+        }
+
+        /// <summary>
+        /// Saves the document.
+        /// </summary>
+        /// <param name="userId">The user identifier.</param>
+        /// <param name="doc">The document.</param>
         public static void Save(int userId, Document doc)
         {
             if (doc.UserId != userId && doc.CategoryId != null)
@@ -59,10 +81,10 @@ namespace MindMap.Bussiness
         }
 
         /// <summary>
-        ///     Load document from file
+        /// Load document data from file
         /// </summary>
-        /// <param name="doc"></param>
-        /// <returns></returns>
+        /// <param name="doc">The document.</param>
+        /// <returns>Document.</returns>
         private static Document LoadDocumentData(this Document doc)
         {
             // get file path

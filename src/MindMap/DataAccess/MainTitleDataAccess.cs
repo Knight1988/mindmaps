@@ -36,5 +36,16 @@ namespace MindMap.DataAccess
                 cmd.ExecuteNonQuery();
             }
         }
+
+        public Guid GetDefaultDocumentId()
+        {
+            using (var connection = Connection.NewConnection())
+            {
+                const string cmdText = @"SELECT [DefaultDocumentId] FROM [MindMapMainTitle] AS [t0]";
+                var cmd = new SqlCommand(cmdText, connection);
+                connection.Open();
+                return (Guid)cmd.ExecuteScalar();
+            }
+        }
     }
 }

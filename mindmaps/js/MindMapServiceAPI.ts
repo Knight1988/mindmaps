@@ -26,6 +26,19 @@ module MindMapServiceAPI {
         });
     }
 
+    export function loadDefaultDocument(userId: number,
+        success?: (data: any, textStatus: string, jqXHR: JQueryXHR) => any,
+        error?: (jqXHR: JQueryXHR, textStatus: string, errorThrown: string) => any) {
+        $.ajax({
+            type: "POST",
+            url: "handles/Load.ashx",
+            data: { userId: userId },
+            success: success,
+            error: error,
+            dataType: "json"
+        });
+    }
+
     export function save(userId: number, doc: any,
         success?: (data: any, textStatus: string, jqXHR: JQueryXHR) => any,
         error?: (jqXHR: JQueryXHR, textStatus: string, errorThrown: string) => any) {
