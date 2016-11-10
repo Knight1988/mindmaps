@@ -28,7 +28,7 @@ mindmaps.CaptionImage = function () {
                 e.stopPropagation();
             })
             .css({
-                "border-radius": "50%",
+                "border-radius": "15%",
                 width: 100,
                 height: 100,
                 visibility: "hidden",

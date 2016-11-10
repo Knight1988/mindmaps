@@ -8,3 +8,4 @@ var MindMapCategory = (function () {
     }
     return MindMapCategory;
 }());
+//# sourceMappingURL=MindMapDocument.js.map
