@@ -65,11 +65,12 @@
         <tr>
             <td><a class="title" href="#">${title}</a></td>
             <!--<td>${dates.format(dates.modified)}</td>-->
-            <td>
-                {{if canDelete}}
-                <a class="delete" href="#"><img src="img/delete.png" alt="delete" /></a>
+            <td>{{if canDelete}}
+                <a class="delete" href="#">
+                    <img src="img/delete.png" alt="delete" /></a>
                 {{else canRestore}}
-                <a class="restore" href="#"><img src="img/restore.png" alt="restore" /></a>
+                <a class="restore" href="#">
+                    <img src="img/restore.png" alt="restore" /></a>
                 {{/if}}
             </td>
         </tr>
@@ -208,14 +209,14 @@
                         <td>Font color:</td>
                         <td>
                             <input type="hidden" id="inspector-font-color-picker"
-                                   class="colorpicker" />
+                                class="colorpicker" />
                         </td>
                     </tr>
                     <tr>
                         <td>Branch color:</td>
                         <td>
                             <input type="hidden" id="inspector-branch-color-picker"
-                                   class="colorpicker" />
+                                class="colorpicker" />
                             <button id="inspector-button-branch-color-children" title="Apply branch color to all children" class="right buttons-small buttons-less-padding">Inherit</button>
                         </td>
                     </tr>
@@ -226,8 +227,7 @@
 
     <script id="template-export-map" type="text/x-jquery-tmpl">
         <div id="export-map-dialog" title="Export mind map">
-            <h2 class='image-description'>
-                To download the map right-click the
+            <h2 class='image-description'>To download the map right-click the
                 image and select "Save Image As"
             </h2>
             <div id="export-preview"></div>
@@ -253,8 +253,7 @@
                 </div>
 
                 <div class="buttons">
-                    <span class="buttons-left"> </span> <span class="buttons-right">
-                    </span>
+                    <span class="buttons-left"></span><span class="buttons-right"></span>
                 </div>
 
             </div>
@@ -281,7 +280,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
     <!--<script src="//api.filepicker.io/v0/filepicker.js"></script>-->
     <script src="js/MindMapServiceAPI.js"></script>
-	<script type="text/javascript">
+    <script type="text/javascript">
         var mindmaps = mindmaps || {};
     </script>
     <!-- DEBUG -->
@@ -347,6 +346,8 @@
     <script src="js/AutoSaveController.js"></script>
     <script src="js/FilePicker.js"></script>
     <!-- JS:LIB:END -->
+    <script src="js/TestController.js"></script>
+
     <!-- PRODUCTION
     <script type="text/javascript">
       var _gaq = _gaq || [];

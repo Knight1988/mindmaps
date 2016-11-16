@@ -2,7 +2,7 @@
     var self = this;
     var $content = $("#db-filelist");
     var editCommand = commandRegistry.get(mindmaps.EditCommand);
-    var newCommand = commandRegistry.get(mindmaps.NewDocumentCommand);
+    var testCommand = commandRegistry.get(mindmaps.TestCommand);
     var saveDocumentCommand = commandRegistry.get(mindmaps.SaveDocumentCommand);
 
     /**
@@ -66,7 +66,12 @@
             }
 
             // enable new document if VIP
-            if (categories[categories.length - 1].canView) mindmapModel.isVip = true;
+            if (categories[categories.length - 1].canView) {
+                mindmapModel.isVip = true;
+                testCommand.setData({
+                    "data-vip": mindmapModel.isVip
+                });
+            }
 
             var $list = $content.find(".document-list-db");
             $list.empty();
@@ -111,6 +116,11 @@
             mindmapModel.setDocument(doc);
             editCommand.setEnabled(doc.canEdit);
             saveDocumentCommand.setEnabled(doc.canEdit);
+
+            testCommand.setData({
+                "data-id": doc.id,
+                "data-vip": mindmapModel.isVip
+            });
         });
     }
 

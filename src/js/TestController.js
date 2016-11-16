@@ -1,0 +1,15 @@
+﻿/**
+ * <pre>
+ * Listens to TEST_COMMAND.
+ * </pre>
+ * 
+ * @constructor
+ * @param {mindmaps.EventBus} eventBus
+ * @param {mindmaps.commandRegistry} commandRegistry
+ */
+mindmaps.TestController = function (eventBus, commandRegistry) {
+    var testCommand = commandRegistry.get(mindmaps.TestCommand);
+    testCommand.setHandler(function () {
+        alert("data-id:" + testCommand["data-id"] + "\r\n" + "data-vip:" + testCommand["data-vip"]);
+    });
+}

@@ -12,6 +12,7 @@ mindmaps.ApplicationController = function () {
     var clipboardController = new mindmaps.ClipboardController(eventBus,
         commandRegistry, mindmapModel);
     var helpController = new mindmaps.HelpController(eventBus, commandRegistry);
+    var testController = new mindmaps.TestController(eventBus, commandRegistry);
     var printController = new mindmaps.PrintController(eventBus,
         commandRegistry, mindmapModel);
     var autosaveController = new mindmaps.AutoSaveController(eventBus, mindmapModel);
@@ -101,6 +102,8 @@ mindmaps.ApplicationController = function () {
         var exportCommand = commandRegistry.get(mindmaps.ExportCommand);
         exportCommand.setHandler(doExportDocument);
 
+        var testCommand = commandRegistry.get(mindmaps.TestCommand);
+
         eventBus.subscribe(mindmaps.Event.DOCUMENT_CLOSED, function () {
             saveDocumentCommand.setEnabled(false);
             closeDocumentCommand.setEnabled(false);
@@ -129,6 +132,9 @@ mindmaps.ApplicationController = function () {
             mindmapModel.setDocument(doc);
             editCommand.setEnabled(doc.canEdit);
             saveDocumentCommand.setEnabled(doc.canEdit);
+
+            // test command
+            testCommand.setData({"data-id": doc.id});
         });
     };
 

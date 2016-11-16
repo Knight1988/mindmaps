@@ -70,6 +70,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="js\TestController.js" />
     <Content Include="packages.config" />
     <Content Include="handles\GetMainTitle.ashx" />
     <Content Include="handles\ImageUpload.ashx" />

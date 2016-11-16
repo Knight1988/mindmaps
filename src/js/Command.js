@@ -33,7 +33,8 @@ mindmaps.Command.Event = {
     ENABLED_CHANGED: "EnabledChangedCommandEvent",
     VISIBLE_CHANGED: "VisibleChangedCommandEvent",
     CSS_CHANGED: "CssChangedCommandEvent",
-    LABEL_CHANGED: "LabelChangedCommandEvent"
+    LABEL_CHANGED: "LabelChangedCommandEvent",
+    DATA_CHANGED: "DataChangedCommandEvent"
 };
 
 mindmaps.Command.prototype = {
@@ -102,12 +103,24 @@ mindmaps.Command.prototype = {
     },
 
     /**
-     * Sets the css of the command.
+     * Sets the label of the command.
      * 
-     * @param {object} css
+     * @param {object} text
      */
     setLabel: function (text) {
         this.publish(mindmaps.Command.Event.LABEL_CHANGED, text);
+    },
+
+    /**
+     * Sets the data of the command.
+     * 
+     * @param {object} data
+     */
+    setData: function (data) {
+        for (var propertyName in data)
+            if (data.hasOwnProperty(propertyName))
+                this[propertyName] = data[propertyName];
+        this.publish(mindmaps.Command.Event.DATA_CHANGED, data);
     }
 };
 /**
@@ -411,3 +424,18 @@ mindmaps.LeftMenuCommand = function () {
     this.description = "Collaps/Expand the menu";
 };
 mindmaps.LeftMenuCommand.prototype = new mindmaps.Command();
+
+/**
+ * Creates a new TestCommand.
+ * 
+ * @constructor
+ * @augments mindmaps.Command
+ */
+mindmaps.TestCommand = function () {
+    this.id = "Test_COMMAND";
+    this.enabled = true;
+    this.icon = "ui-icon-document";
+    this.label = "Test";
+    this.description = "Test";
+};
+mindmaps.TestCommand.prototype = new mindmaps.Command();

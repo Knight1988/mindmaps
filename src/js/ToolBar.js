@@ -103,6 +103,13 @@ mindmaps.ToolBarButton = function (command) {
                 self.setLabel(text);
             }
         });
+
+    command.subscribe(mindmaps.Command.Event.DATA_CHANGED,
+        function (data) {
+            if (self.setData) {
+                self.setData(data);
+            }
+        });
 };
 
 /**
@@ -214,6 +221,11 @@ mindmaps.ToolBarButton.prototype.asJquery = function () {
     // callback to set label
     this.setLabel = function (text) {
         $button.button({label: text});
+    };
+
+    // callback to set data
+    this.setData = function (data) {
+        $button.attr(data);
     };
 
     return $button;
@@ -330,6 +342,11 @@ mindmaps.ToolBarPresenter = function (eventBus, commandRegistry, view,
         mindmaps.CutNodeCommand, mindmaps.PasteNodeCommand];
     var clipboardButtons = commandsToButtons(clipboardCommands);
     view.addButtonGroup(clipboardButtons, view.alignLeft);
+
+    // test buttons.
+    var testCommands = [mindmaps.TestCommand];
+    var testButtons = commandsToButtons(testCommands);
+    view.addButtonGroup(testButtons, view.alignLeft);
 
     // edit button
     view.addButton(commandToButton(mindmaps.NewDocumentCommand), view.alignRight);
