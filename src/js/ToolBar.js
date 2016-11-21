@@ -328,7 +328,7 @@ mindmaps.ToolBarPresenter = function (eventBus, commandRegistry, view,
     view.addButtonGroup(menuButtons, view.alignLeft);
 
     // node buttons
-    var nodeCommands = [mindmaps.CreateNodeCommand, mindmaps.DeleteNodeCommand];
+    var nodeCommands = [mindmaps.CreateNodeCommand, mindmaps.DeleteNodeCommand, mindmaps.TestCommand];
     var nodeButtons = commandsToButtons(nodeCommands);
     view.addButtonGroup(nodeButtons, view.alignLeft);
 
@@ -342,11 +342,6 @@ mindmaps.ToolBarPresenter = function (eventBus, commandRegistry, view,
         mindmaps.CutNodeCommand, mindmaps.PasteNodeCommand];
     var clipboardButtons = commandsToButtons(clipboardCommands);
     view.addButtonGroup(clipboardButtons, view.alignLeft);
-
-    // test buttons.
-    var testCommands = [mindmaps.TestCommand];
-    var testButtons = commandsToButtons(testCommands);
-    view.addButtonGroup(testButtons, view.alignLeft);
 
     // edit button
     view.addButton(commandToButton(mindmaps.NewDocumentCommand), view.alignRight);
