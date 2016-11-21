@@ -72,6 +72,7 @@
                     "data-vip": mindmapModel.isVip
                 });
             }
+            testCommand.setVisible(mindmapModel.isVip);
 
             var $list = $content.find(".document-list-db");
             $list.empty();
