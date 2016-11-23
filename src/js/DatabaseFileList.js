@@ -58,7 +58,7 @@
 
     this.loadFiles = function (expandCategoryId) {
         var userId = Querystring.getInt("id", 0);
-        MindMapServiceAPI.getCategories(userId, function (categories) {
+        window.MindMapServiceAPI.getCategories(userId, function (categories) {
             // Sort documents in categories
             for (var i = 0; i < categories.length; i++) {
                 var category = categories[i];
@@ -112,7 +112,7 @@
     this.documentClicked = function (doc) {
         mindmaps.Util.trackEvent("Clicks", "database-open");
         var userId = Querystring.getInt("id", 0);
-        MindMapServiceAPI.load(doc.id, userId, function (document) {
+        window.MindMapServiceAPI.load(doc.id, userId, function (document) {
             doc = mindmaps.Document.fromObject(document);
             mindmapModel.setDocument(doc);
             editCommand.setEnabled(doc.canEdit);
@@ -130,7 +130,7 @@
         var result = confirm("Delete document '" + doc.title + "'?");
         if (result) {
             // remove the document
-            MindMapServiceAPI.remove(doc, function () {
+            window.MindMapServiceAPI.remove(doc, function () {
                 // re-render view
                 self.loadFiles(doc.category.id);
             });
@@ -143,7 +143,7 @@
         var result = confirm("Restore document '" + doc.title + "'?");
         if (result) {
             // remove the document
-            MindMapServiceAPI.remove(doc, function () {
+            window.MindMapServiceAPI.remove(doc, function () {
                 // re-render view
                 self.loadFiles(doc.category.id);
             });
