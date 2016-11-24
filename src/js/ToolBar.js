@@ -327,41 +327,52 @@ mindmaps.ToolBarPresenter = function (eventBus, commandRegistry, view,
     var menuButtons = commandsToButtons(leftMenuCommands);
     view.addButtonGroup(menuButtons, view.alignLeft);
 
-    // node buttons
-    var nodeCommands = [mindmaps.CreateNodeCommand, mindmaps.DeleteNodeCommand, mindmaps.TestCommand];
-    var nodeButtons = commandsToButtons(nodeCommands);
-    view.addButtonGroup(nodeButtons, view.alignLeft);
+    // test commands
+    view.addButton(commandToButton(mindmaps.TestCommand), view.alignLeft);
 
-    // undo buttons
-    var undoCommands = [mindmaps.UndoCommand, mindmaps.RedoCommand];
-    var undoButtons = commandsToButtons(undoCommands);
-    view.addButtonGroup(undoButtons, view.alignLeft);
+    var userId = Querystring.getInt("id", 0);
+    window.MindMapServiceAPI.isVip(userId, function (isVip) {
 
-    // clipboard buttons.
-    var clipboardCommands = [mindmaps.CopyNodeCommand,
-        mindmaps.CutNodeCommand, mindmaps.PasteNodeCommand];
-    var clipboardButtons = commandsToButtons(clipboardCommands);
-    view.addButtonGroup(clipboardButtons, view.alignLeft);
+        // node buttons
+        var nodeCommands = [mindmaps.CreateNodeCommand, mindmaps.DeleteNodeCommand];
+        var nodeButtons = commandsToButtons(nodeCommands);
+        if (isVip) view.addButtonGroup(nodeButtons, view.alignLeft);
 
-    // edit button
-    view.addButton(commandToButton(mindmaps.NewDocumentCommand), view.alignRight);
-    //view.addButton(commandToButton(mindmaps.OpenDocumentCommand), view.alignRight);
-    view.addButton(commandToButton(mindmaps.EditCommand), view.alignRight);
-    view.addButton(commandToButton(mindmaps.SaveDocumentCommand), view.alignRight);
-    //view.addButton(commandToButton(mindmaps.CloseDocumentCommand), view.alignRight);
+        // undo buttons
+        var undoCommands = [mindmaps.UndoCommand, mindmaps.RedoCommand];
+        var undoButtons = commandsToButtons(undoCommands);
+        if (isVip) view.addButtonGroup(undoButtons, view.alignLeft);
 
-    // file menu
-    //var fileMenu = new mindmaps.ToolBarMenu("Mind map", "ui-icon-document");
-    //var fileCommands = [ mindmaps.NewDocumentCommand,
-    //    mindmaps.OpenDocumentCommand, mindmaps.SaveDocumentCommand,
-    //    mindmaps.ExportCommand, mindmaps.PrintCommand,
-    //    mindmaps.CloseDocumentCommand ];
-    //var fileButtons = commandsToButtons(fileCommands);
-    //fileMenu.add(fileButtons);
-    //view.addMenu(fileMenu);
+        // clipboard buttons.
+        var clipboardCommands = [mindmaps.CopyNodeCommand,
+            mindmaps.CutNodeCommand, mindmaps.PasteNodeCommand];
+        var clipboardButtons = commandsToButtons(clipboardCommands);
+        if (isVip) view.addButtonGroup(clipboardButtons, view.alignLeft);
 
-    // help button
-    view.addButton(commandToButton(mindmaps.HelpCommand), view.alignRight);
+        // edit button
+        //view.addButton(commandToButton(mindmaps.NewDocumentCommand), view.alignRight);
+        //view.addButton(commandToButton(mindmaps.OpenDocumentCommand), view.alignRight);
+        //view.addButton(commandToButton(mindmaps.EditCommand), view.alignRight);
+        //view.addButton(commandToButton(mindmaps.SaveDocumentCommand), view.alignRight);
+        //view.addButton(commandToButton(mindmaps.CloseDocumentCommand), view.alignRight);
+
+        var saveCommands = [mindmaps.NewDocumentCommand, mindmaps.EditCommand, mindmaps.SaveDocumentCommand];
+        var saveButtons = commandsToButtons(saveCommands);
+        if (isVip) view.addButtonGroup(saveButtons, view.alignRight);
+
+        // file menu
+        //var fileMenu = new mindmaps.ToolBarMenu("Mind map", "ui-icon-document");
+        //var fileCommands = [ mindmaps.NewDocumentCommand,
+        //    mindmaps.OpenDocumentCommand, mindmaps.SaveDocumentCommand,
+        //    mindmaps.ExportCommand, mindmaps.PrintCommand,
+        //    mindmaps.CloseDocumentCommand ];
+        //var fileButtons = commandsToButtons(fileCommands);
+        //fileMenu.add(fileButtons);
+        //view.addMenu(fileMenu);
+
+        // help button
+        view.addButton(commandToButton(mindmaps.HelpCommand), view.alignRight);
+    });
 
     this.go = function () {
         view.init();

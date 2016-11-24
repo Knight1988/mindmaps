@@ -1,6 +1,17 @@
 // ReSharper disable InconsistentNaming
 var MindMapServiceAPI;
 (function (MindMapServiceAPI) {
+    function isVip(userId, success, error) {
+        $.ajax({
+            type: "POST",
+            url: "handles/IsVip.ashx",
+            data: { userId: userId },
+            success: success,
+            error: error,
+            dataType: "json"
+        });
+    }
+    MindMapServiceAPI.isVip = isVip;
     function getMainTitle(success, error) {
         $.ajax({
             type: "POST",

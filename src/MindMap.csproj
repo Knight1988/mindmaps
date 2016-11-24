@@ -80,6 +80,7 @@
     <Content Include="MindMap\ClassDiagram.cd" />
     <Content Include="cache.appcache" />
     <Content Include="handles\Load.ashx" />
+    <Content Include="handles\IsVip.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -177,6 +178,9 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="handles\IsVip.ashx.cs">
+      <DependentUpon>IsVip.ashx</DependentUpon>
+    </Compile>
     <Compile Include="handles\Load.ashx.cs">
       <DependentUpon>Load.ashx</DependentUpon>
     </Compile>

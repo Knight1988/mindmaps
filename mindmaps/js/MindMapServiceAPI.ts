@@ -2,6 +2,18 @@
 
 // ReSharper disable InconsistentNaming
 module MindMapServiceAPI {
+    export function isVip(userId: number, success?: (data: any, textStatus: string, jqXHR: JQueryXHR) => any,
+        error?: (jqXHR: JQueryXHR, textStatus: string, errorThrown: string) => any) {
+        $.ajax({
+            type: "POST",
+            url: "handles/IsVip.ashx",
+            data: { userId: userId },
+            success: success,
+            error: error,
+            dataType: "json"
+        });
+    }
+
     export function getMainTitle(success?: (data: any, textStatus: string, jqXHR: JQueryXHR) => any,
         error?: (jqXHR: JQueryXHR, textStatus: string, errorThrown: string) => any) {
         $.ajax({
