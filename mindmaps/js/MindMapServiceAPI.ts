@@ -84,19 +84,19 @@ module MindMapServiceAPI {
     export function getCategories(userId: number, success?: (data: any) => any, error?: (msg: string) => any) {
         $.post("handles/LoadFromDatabase.ashx",
             { userId: userId },
-            (result: MindMapCategory) => {
+            (result: any) => {
                 const categories = parseData(userId, result);
                 // success
                 success(categories);
             });
     }
 
-    function parseData(userId: number, datas: any): MindMapCategory[] {
-        const categories: MindMapCategory[] = [];
+    function parseData(userId: number, datas: any): any[] {
+        const categories: any[] = [];
         // get the document list
         for (let i = 0; i < datas.length; i++) {
             // get category
-            const category: MindMapCategory = mindmaps.Category.fromObject(datas[i]);
+            const category: any = mindmaps.Category.fromObject(datas[i]);
             categories.push(category);
         }
         return categories;

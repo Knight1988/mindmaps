@@ -25,7 +25,6 @@
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="js\MindMapDocument.ts" />
     <TypeScriptCompile Include="js\MindMapServiceAPI.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
   </ItemGroup>
