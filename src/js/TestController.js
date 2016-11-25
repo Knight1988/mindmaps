@@ -12,4 +12,8 @@ mindmaps.TestController = function (eventBus, commandRegistry) {
     testCommand.setHandler(function () {
         alert("data-id:" + testCommand["data-id"] + "\r\n" + "data-vip:" + testCommand["data-vip"]);
     });
+
+    eventBus.subscribe(mindmaps.Event.DOCUMENT_OPENED, function (doc) {
+        testCommand.setVisible(!doc.isPrivate);
+    });
 }
