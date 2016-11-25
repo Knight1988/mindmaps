@@ -14,6 +14,8 @@ mindmaps.TestController = function (eventBus, commandRegistry) {
     });
 
     eventBus.subscribe(mindmaps.Event.DOCUMENT_OPENED, function (doc) {
+        // test command
+        testCommand.setData({ "data-id": doc.id });
         testCommand.setVisible(!doc.isPrivate);
     });
 }

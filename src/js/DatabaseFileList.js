@@ -117,7 +117,6 @@
             mindmapModel.setDocument(doc);
 
             testCommand.setData({
-                "data-id": doc.id,
                 "data-vip": mindmapModel.isVip
             });
         });

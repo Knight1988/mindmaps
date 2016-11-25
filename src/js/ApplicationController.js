@@ -94,6 +94,7 @@ mindmaps.ApplicationController = function () {
         var saveDocumentCommand = commandRegistry
             .get(mindmaps.SaveDocumentCommand);
         saveDocumentCommand.setHandler(doSaveDocument);
+        saveDocumentCommand.setVisible(false);
 
         var closeDocumentCommand = commandRegistry
             .get(mindmaps.CloseDocumentCommand);
@@ -113,16 +114,6 @@ mindmaps.ApplicationController = function () {
             closeDocumentCommand.setEnabled(true);
             exportCommand.setEnabled(true);
         });
-
-        var userId = Querystring.getInt("id", 0);
-        MindMapServiceAPI.loadDefaultDocument(userId, function (document) {
-            var doc = mindmaps.Document.fromObject(document);
-            mindmapModel.setDocument(doc);
-            saveDocumentCommand.setEnabled(doc.canEdit);
-
-            // test command
-            testCommand.setData({"data-id": doc.id});
-        });
     };
 
     /**
@@ -132,6 +123,12 @@ mindmaps.ApplicationController = function () {
         var viewController = new mindmaps.MainViewController(eventBus,
             mindmapModel, commandRegistry, leftMenuController);
         viewController.go();
+
+        var userId = Querystring.getInt("id", 0);
+        window.MindMapServiceAPI.loadDefaultDocument(userId, function (document) {
+            var doc = mindmaps.Document.fromObject(document);
+            mindmapModel.setDocument(doc);
+        });
     };
 
     this.init();

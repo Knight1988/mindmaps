@@ -349,29 +349,14 @@ mindmaps.ToolBarPresenter = function (eventBus, commandRegistry, view,
         var clipboardButtons = commandsToButtons(clipboardCommands);
         if (isVip) view.addButtonGroup(clipboardButtons, view.alignLeft);
 
-        // edit button
-        //view.addButton(commandToButton(mindmaps.NewDocumentCommand), view.alignRight);
-        //view.addButton(commandToButton(mindmaps.OpenDocumentCommand), view.alignRight);
-        //view.addButton(commandToButton(mindmaps.EditCommand), view.alignRight);
-        //view.addButton(commandToButton(mindmaps.SaveDocumentCommand), view.alignRight);
-        //view.addButton(commandToButton(mindmaps.CloseDocumentCommand), view.alignRight);
-
         var saveCommands = [mindmaps.NewDocumentCommand, mindmaps.EditCommand, mindmaps.SaveDocumentCommand];
         var saveButtons = commandsToButtons(saveCommands);
         if (isVip) view.addButtonGroup(saveButtons, view.alignRight);
 
-        // file menu
-        //var fileMenu = new mindmaps.ToolBarMenu("Mind map", "ui-icon-document");
-        //var fileCommands = [ mindmaps.NewDocumentCommand,
-        //    mindmaps.OpenDocumentCommand, mindmaps.SaveDocumentCommand,
-        //    mindmaps.ExportCommand, mindmaps.PrintCommand,
-        //    mindmaps.CloseDocumentCommand ];
-        //var fileButtons = commandsToButtons(fileCommands);
-        //fileMenu.add(fileButtons);
-        //view.addMenu(fileMenu);
-
         // help button
         view.addButton(commandToButton(mindmaps.HelpCommand), view.alignRight);
+
+        eventBus.publish(mindmaps.Event.INITIALIZED);
     });
 
     this.go = function () {

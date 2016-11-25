@@ -173,14 +173,12 @@ mindmaps.MainViewController = function (eventBus, mindmapModel, commandRegistry,
         //navigatorPanel.show();
         statusbarPresenter.addEntry(navigatorPanel);
 
-        MindMapServiceAPI.getMainTitle(function(value) {
+        window.MindMapServiceAPI.getMainTitle(function(value) {
             $("#main-title").html(value);
         });
 
         canvasContainer.getContent().click(function() {
             leftMenuController.collapse();
         });
-
-        eventBus.publish(mindmaps.Event.INITIALIZED);
     };
 };

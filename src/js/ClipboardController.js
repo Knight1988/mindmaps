@@ -20,23 +20,24 @@ mindmaps.ClipboardController = function(eventBus, commandRegistry, mindmapModel)
 
     pasteCommand = commandRegistry.get(mindmaps.PasteNodeCommand);
     pasteCommand.setHandler(doPaste);
-    pasteCommand.setEnabled(false);
+    pasteCommand.setVisible(false);
 
     eventBus.subscribe(mindmaps.Event.DOCUMENT_CLOSED, function() {
-      copyCommand.setEnabled(false);
-      cutCommand.setEnabled(false);
-      pasteCommand.setEnabled(false);
+      copyCommand.setVisible(false);
+      cutCommand.setVisible(false);
+      pasteCommand.setVisible(false);
     });
 
     eventBus.subscribe(mindmaps.Event.DOCUMENT_OPENED, function () {
-      copyCommand.setEnabled(false);
-      cutCommand.setEnabled(false);
-      pasteCommand.setEnabled(false);
+      copyCommand.setVisible(false);
+      cutCommand.setVisible(false);
+      pasteCommand.setVisible(false);
     });
 
     eventBus.subscribe(mindmaps.Event.DOCUMENT_EDIT, function() {
-      copyCommand.setEnabled(true);
-      cutCommand.setEnabled(true);
+      copyCommand.setVisible(true);
+      cutCommand.setVisible(true);
+      pasteCommand.setVisible(true);
       pasteCommand.setEnabled(node != null);
     });
 

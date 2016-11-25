@@ -3,6 +3,7 @@
     var saveDocumentCommand = commandRegistry.get(mindmaps.SaveDocumentCommand);
     editCommand.setHandler(function () {
         editCommand.setVisible(false);
+        saveDocumentCommand.setVisible(true);
         eventBus.publish(mindmaps.Event.DOCUMENT_EDIT);
     });
 
@@ -17,7 +18,7 @@
     });
 
     eventBus.subscribe(mindmaps.Event.DOCUMENT_CLOSED, function() {
-        saveDocumentCommand.setVisible(true);
+        saveDocumentCommand.setVisible(false);
     });
 
     eventBus.subscribe(mindmaps.Event.INITIALIZED, function () {
