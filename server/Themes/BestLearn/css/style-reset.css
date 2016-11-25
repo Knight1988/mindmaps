@@ -1,0 +1,34 @@
+@charset "utf-8";
+/*********************************************** Reset Style ***********************************************/
+*{margin:0; padding:0;}
+html, body{
+    font-family: Arial, Helvetica, sans-serif;
+	color:#424242;
+	margin:0; padding:0;
+	font-size:100%;
+	background:#fff;
+	height:100%;
+}
+body, html, div, blockquote, img, label, p,
+h1, h2, h3, h4, h5, h6, pre, ul,  ol, li, dl, dt,
+dd, form, a, fieldset, input, select, textarea, th, td { 
+	margin:0; padding:0; border:0; outline:none; 
+	font-family: Arial, Helvetica, sans-serif;
+}
+option{padding:0 4px 0 4px;}
+ol, ul {list-style:none;}
+a {color:#474747; text-decoration:none;}
+a:hover {color:#DF7E00;}
+a img {border:none;}
+
+fieldset {border: none;}
+h1, h2, h3, h4, h5, h6 {font-family: Arial, Helvetica, sans-serif;}
+p{font-family: Arial, Helvetica, sans-serif;}
+.clear{clear:both;}
+.floatleft{float:left;}
+.floatright{float:right;}
+.aligncenter{text-align:center;}
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}

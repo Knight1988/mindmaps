@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8D272F07-2B04-4FDD-A714-CEBAFAC1A7C0}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MindMapRelease</RootNamespace>
+    <AssemblyName>MindMapRelease</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Default.aspx" />
+    <Content Include="DesktopModules\ElearningEnglish\Image\delete.png" />
+    <Content Include="DesktopModules\ElearningEnglish\Image\favicon.png" />
+    <Content Include="DesktopModules\ElearningEnglish\Image\restore.png" />
+    <Content Include="DesktopModules\ElearningEnglish\Image\righ.mp3" />
+    <Content Include="DesktopModules\ElearningEnglish\Image\vet1.wav" />
+    <Content Include="DesktopModules\ElearningEnglish\Image\wrong.mp3" />
+    <Content Include="DesktopModules\ElearningEnglish\Services\LoadData.aspx" />
+    <Content Include="Themes\BestLearn\css\img\grid.gif" />
+    <Content Include="DesktopModules\ElearningEnglish\img\upload-image.png" />
+    <Content Include="DesktopModules\ElearningEnglish\mindmap.html" />
+    <Content Include="packages.config" />
+    <Content Include="DesktopModules\ElearningEnglish\handles\IsVip.ashx" />
+    <Content Include="DesktopModules\ElearningEnglish\handles\Load.ashx" />
+    <Content Include="DesktopModules\ElearningEnglish\handles\GetMainTitle.ashx" />
+    <Content Include="DesktopModules\ElearningEnglish\handles\ImageUpload.ashx" />
+    <Content Include="DesktopModules\ElearningEnglish\handles\LoadFromDatabase.ashx" />
+    <Content Include="DesktopModules\ElearningEnglish\handles\RemoveFromDatabase.ashx" />
+    <Content Include="DesktopModules\ElearningEnglish\handles\SaveToDatabase.ashx" />
+    <Content Include="..\src\MindMap\ClassDiagram.cd">
+      <Link>MindMap\ClassDiagram.cd</Link>
+    </Content>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Themes\BestLearn\css\all.css" />
+    <Content Include="Themes\BestLearn\css\bestlearn.css" />
+    <Content Include="Themes\BestLearn\css\flat\_all.css" />
+    <Content Include="Themes\BestLearn\css\line\_all.css" />
+    <Content Include="Themes\BestLearn\css\mindmap\about.css" />
+    <Content Include="Themes\BestLearn\css\mindmap\app.css" />
+    <Content Include="Themes\BestLearn\css\mindmap\Aristo\images\bg_fallback.png" />
+    <Content Include="Themes\BestLearn\css\mindmap\Aristo\images\icon_sprite.png" />
+    <Content Include="Themes\BestLearn\css\mindmap\Aristo\images\progress_bar.gif" />
+    <Content Include="Themes\BestLearn\css\mindmap\Aristo\images\slider_handles.png" />
+    <Content Include="Themes\BestLearn\css\mindmap\Aristo\images\ui-icons_222222_256x240.png" />
+    <Content Include="Themes\BestLearn\css\mindmap\Aristo\images\ui-icons_454545_256x240.png" />
+    <Content Include="Themes\BestLearn\css\mindmap\Aristo\jquery-ui-1.8.7.custom.css" />
+    <Content Include="Themes\BestLearn\css\mindmap\common.css" />
+    <Content Include="Themes\BestLearn\css\mindmap\minicolors\images\circle.gif" />
+    <Content Include="Themes\BestLearn\css\mindmap\minicolors\images\gradient.png" />
+    <Content Include="Themes\BestLearn\css\mindmap\minicolors\images\line.gif" />
+    <Content Include="Themes\BestLearn\css\mindmap\minicolors\images\rainbow.png" />
+    <Content Include="Themes\BestLearn\css\mindmap\minicolors\images\trigger.png" />
+    <Content Include="Themes\BestLearn\css\mindmap\minicolors\jquery.miniColors.css" />
+    <Content Include="Themes\BestLearn\css\minimal\_all.css" />
+    <Content Include="Themes\BestLearn\css\square\_all.css" />
+    <Content Include="Themes\BestLearn\css\style-reset.css" />
+    <Content Include="Themes\BestLearn\css\style-responsive.css" />
+    <Content Include="Themes\BestLearn\css\style-scrollbar.css" />
+    <Content Include="Themes\BestLearn\css\style.css" />
+    <Content Include="Themes\BestLearn\font-awesome-4.3.0\css\font-awesome.min.css" />
+    <Content Include="Themes\BestLearn\images\icon-tortoise.png" />
+    <Content Include="Themes\BestLearn\js\icheck.min.js" />
+    <Content Include="Themes\BestLearn\js\jquery.knob.js" />
+    <Content Include="Themes\BestLearn\js\mindmap\MindMapServiceAPI.js" />
+    <Content Include="Themes\BestLearn\js\mindmap\script.js" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\src\MindMap\Bussiness\CategoryBussiness.cs">
+      <Link>MindMap\Bussiness\CategoryBussiness.cs</Link>
+    </Compile>
+    <Compile Include="..\src\MindMap\Bussiness\DocumentBussiness.cs">
+      <Link>MindMap\Bussiness\DocumentBussiness.cs</Link>
+    </Compile>
+    <Compile Include="..\src\MindMap\Bussiness\MainTitleBussiness.cs">
+      <Link>MindMap\Bussiness\MainTitleBussiness.cs</Link>
+    </Compile>
+    <Compile Include="..\src\MindMap\Bussiness\PermissionBussiness.cs">
+      <Link>MindMap\Bussiness\PermissionBussiness.cs</Link>
+    </Compile>
+    <Compile Include="..\src\MindMap\DataAccess\CategoryDataAccess.cs">
+      <Link>MindMap\DataAccess\CategoryDataAccess.cs</Link>
+    </Compile>
+    <Compile Include="..\src\MindMap\DataAccess\Connection.cs">
+      <Link>MindMap\DataAccess\Connection.cs</Link>
+    </Compile>
+    <Compile Include="..\src\MindMap\DataAccess\DocumentDataAccess.cs">
+      <Link>MindMap\DataAccess\DocumentDataAccess.cs</Link>
+    </Compile>
+    <Compile Include="..\src\MindMap\DataAccess\MainTitleDataAccess.cs">
+      <Link>MindMap\DataAccess\MainTitleDataAccess.cs</Link>
+    </Compile>
+    <Compile Include="..\src\MindMap\DataAccess\PermissionDataAccess.cs">
+      <Link>MindMap\DataAccess\PermissionDataAccess.cs</Link>
+    </Compile>
+    <Compile Include="..\src\MindMap\Entity\Category.cs">
+      <Link>MindMap\Entity\Category.cs</Link>
+    </Compile>
+    <Compile Include="..\src\MindMap\Entity\Document.cs">
+      <Link>MindMap\Entity\Document.cs</Link>
+    </Compile>
+    <Compile Include="..\src\MindMap\Extensions.cs">
+      <Link>MindMap\Extensions.cs</Link>
+    </Compile>
+    <Compile Include="..\src\MindMap\Interface\ICategoryDataAccess.cs">
+      <Link>MindMap\Interface\ICategoryDataAccess.cs</Link>
+    </Compile>
+    <Compile Include="..\src\MindMap\Interface\IDocumentDataAccess.cs">
+      <Link>MindMap\Interface\IDocumentDataAccess.cs</Link>
+    </Compile>
+    <Compile Include="..\src\MindMap\Interface\IMainTitleDataAccess.cs">
+      <Link>MindMap\Interface\IMainTitleDataAccess.cs</Link>
+    </Compile>
+    <Compile Include="..\src\MindMap\Interface\IPermissionDataAccess.cs">
+      <Link>MindMap\Interface\IPermissionDataAccess.cs</Link>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopModules\ElearningEnglish\handles\GetMainTitle.ashx.cs">
+      <DependentUpon>GetMainTitle.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopModules\ElearningEnglish\handles\ImageUpload.ashx.cs">
+      <DependentUpon>ImageUpload.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopModules\ElearningEnglish\handles\IsVip.ashx.cs">
+      <DependentUpon>IsVip.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopModules\ElearningEnglish\handles\Load.ashx.cs">
+      <DependentUpon>Load.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopModules\ElearningEnglish\handles\LoadFromDatabase.ashx.cs">
+      <DependentUpon>LoadFromDatabase.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopModules\ElearningEnglish\handles\RemoveFromDatabase.ashx.cs">
+      <DependentUpon>RemoveFromDatabase.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopModules\ElearningEnglish\handles\SaveToDatabase.ashx.cs">
+      <DependentUpon>SaveToDatabase.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopModules\ElearningEnglish\Services\LoadData.aspx.cs">
+      <DependentUpon>LoadData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\ElearningEnglish\Services\LoadData.aspx.designer.cs">
+      <DependentUpon>LoadData.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>48197</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:48197/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

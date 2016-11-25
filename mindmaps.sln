@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MindMap", "src\MindMap.cspr
 		{76AB36F3-6314-4C07-A7DA-A8EEEBA02FC7} = {76AB36F3-6314-4C07-A7DA-A8EEEBA02FC7}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MindMapRelease", "server\MindMapRelease.csproj", "{8D272F07-2B04-4FDD-A714-CEBAFAC1A7C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{42264E0B-AFB7-4F89-9800-287C9BD4B65E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{42264E0B-AFB7-4F89-9800-287C9BD4B65E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42264E0B-AFB7-4F89-9800-287C9BD4B65E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D272F07-2B04-4FDD-A714-CEBAFAC1A7C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D272F07-2B04-4FDD-A714-CEBAFAC1A7C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D272F07-2B04-4FDD-A714-CEBAFAC1A7C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D272F07-2B04-4FDD-A714-CEBAFAC1A7C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,457 @@
+a#pull, a.pull-member{display:none;}
+/*Laptop 1280*/
+@media screen and (max-width: 1280px) {
+	
+}
+/*Amazon Kindle Fire HDZ7 */
+@media screen and (max-width: 1200px) {
+	.popup-level {width: 1170px;}
+}
+@media screen and (max-width: 992) {
+	.popup-level {width: 970px;}
+}
+/*Ipad ngang - 1024*/
+@media screen and (max-width: 1024px) {
+	article{width:100%;}
+	.logo{left:10px;}
+	.member{right:10px;}
+
+	.user-sum{width:100%; margin:0; padding:20px 0; background:#00837a;}
+	.user-sum div{padding:0; width:50%; float:left; text-align:center;}
+	.user-sum span{float:none; display:inline-table; margin:0;}
+	#boxSlider{max-width: 100%;height: auto;}
+	#slideshow img{height: auto;}
+	#featured article{padding:40px 10px;}
+	
+	.box-lesson{width:18%; margin:2% 3% 5% 3%;}
+	
+	#mainContent{padding:30px 0;}
+	#mainContent article{padding:0 10px;}
+	.one-sidebar .container{width:65%;}
+	.box-vocabulary{width:43%; margin:2% 3% 3% 3%}
+	.box-sub {width: 199px; left: -37px;}
+	.sidebar{width:32%;}
+	#stated {padding:30px;}
+	.popup-show{left:25%;}
+	.nav a#pull {
+		color:#fff;
+		display:block;
+		height:50px; width:50px;
+		position:absolute; left:10px; top:-8px;
+		line-height:50px;
+		cursor:pointer;
+		background:url('../images/nav-icon.png') no-repeat center center;
+		text-indent:-9999px;
+	}
+	
+	.nav{height:50px; margin:0; padding:0; display:block; float:left;}
+	.nav ul{display:none; width:230px; border:none; margin:50px 0 0 0; padding:0 20px 20px 20px; background:#00a79c; float:left; border-radius:0 0 20px 20px;}
+	.nav ul li:hover ul{display:block !important;}
+	.nav ul li a{padding:25px 10px; font-size:16px;}
+	.nav ul  li {
+		display:block;
+		height:auto;
+		line-height:30px;
+		float:left;
+		width:100%;
+		margin:2px 0 0 0;
+		background:none;
+		position:static;
+		border:none;
+	}
+	.nav ul  li:last-child {
+		border:none;
+	}
+	.nav ul li:hover, .nav ul li.active{border-radius:0;}
+	.nav  ul li a {
+		text-align:left;
+	  	width:100%;
+		color:#fff;
+		display:block;
+		background:none;
+		text-shadow:none;
+		padding:10px 0 10px 20px;
+	}
+	.nav ul li i{float:left; margin:0 10px 0 0;}
+	.nav ul ul{
+		width:100%;
+		position:static!important;
+		height:auto;
+		padding:0 0 10px 30px;
+		background:none!important;
+		margin:0;
+		box-shadow:none;
+	}
+	.nav ul ul li{
+		background:none;
+		border:none;
+	}
+	.nav ul ul li:hover{
+		background:none;
+	}
+	.nav ul ul li:hover a{
+		background:none;
+		font-weight:bold;
+	}
+	.nav ul ul li a{color:#c3c3c3; font-size:16px; padding:5px 0; margin:0; text-transform:none;}
+	#boxSlider{float:none !important;margin: 0 auto;}
+	.item-list-video {width: 33.33%;}
+	.popup-point{width:100%; position:fixed; top:80px; overflow-y:auto; height: auto;}
+	.popup-level{width:100%; position:fixed; top:80px; overflow-y:auto; height: auto;}
+}
+
+/*Ipad doc - 768*/
+@media screen and (max-width: 768px) {
+	.box-sub {left: -62px; width: 250px;}
+	.popup-level {width: 750px;}
+    .item-picture-answer img {
+        width:130px!important;
+        padding:10px!important;
+    }
+    .contain-pic {
+            width: 80%!important;
+    }
+    .item-picture-answer .check-select {
+        right: -7%!important;
+    }
+	#stated {padding:10px;}
+	#stated input {right: 0;}
+	#stated aside:last-child{top:40%; right:20px;}
+	#stated aside {padding: 0;margin-bottom: 15px; margin-top: 15px;}
+	#stated aside p{margin-bottom: 35px;}
+	#boxSlider{}
+	
+	.one-sidebar .container{width:60%;}
+	.box-vocabulary{width:70%; margin:0 0 15% 14%;}
+	.box-lesson{width:26%;}
+	.sidebar{width:38%;}
+	.progress{padding:0 200px;}
+	.gage .container{padding:180px 20px 20px 20px;}
+	.gage .search-friend {margin:0 0 20px 0;}
+	.gage .search-friend div, .gage .search-friend h2{margin:0 0 20px 0;}
+	.gage .search-friend h2, .search-friend div{width:100%; display:table !important; margin:0 0 20px 0;}
+	.gage-form{padding:10px 10px 30px 10px;}	
+	.timeline-gage ul li{margin:0 25px 5px 0;}
+	.item-list-video span{width:100%; display:block;}
+	
+	.content-form{padding:0 0 50px 0!important;}
+	.item-picture-answer{padding:0 20px;}
+	
+	.popup-show{left:20%;}
+	.config{padding:20px 50px;}
+	.box-help{width:25%;}
+	
+	.box-show-video iframe{height:270px;}
+	.item-vocabulary {width: 49%}
+	.container-video, .sidebar-first, .sidebar-second{width:100% !important;margin-bottom: 25px;}
+	.box-sidebar-first{display:none; position:absolute; left:10px; top:50px; background:#fff; padding:20px; z-index:10; box-shadow:0 0 5px rgba(0,0,0,0.3); border-radius:10px;}
+	a.pull-menu-video{display:block !important;}
+	.search-video{width:95%; float:right; display:block !important; margin:0;}
+	.item-game p{font-size:14px; padding-right: 0 !important;}
+	.item-game button{position:static; margin:5px auto; padding:3px 10px; display: block;}
+	.item-game{padding: 10px 45px 10px 100px;}
+	.item-game img{
+	    left: 10px;
+	    margin-top: -40px;
+	    position: absolute;
+	    top: 50%;
+	}
+}
+/*mobile and other*/
+@media screen and (max-width: 640px) {
+	.nav{left:140px; z-index:12;}
+	.nav ul{margin:40px 0 0 0;}
+	.container{height:auto;}
+	.box-lesson{width:43%;}
+	.one-sidebar .container, .sidebar{width:100%;}
+	.box-vocabulary{width:42.8%; margin:2% 3% 7% 3%}
+	.one-sidebar .container, .sidebar{margin:0 0 30px 0;}
+	article{height:auto;}
+	.main-form{padding:20px 20px 50px 20px;}
+	.chart-Lesson{display:none;}
+	.faq{top:10px; right:10px;}
+	.content-form .rows-form div{}
+	.false span{width:60px; height:60px; border-radius:60px; font-size:30px; line-height:60px;}
+	.result-Lesson a{width:100%; float:left; margin:20px 0 0 0;}
+	.result-Lesson .button-fn{width:100%; float:left; margin:30px 0 0 0; position:static;}
+	.result-Lesson .button-fn button{width:100%; margin:0 0 10px 0;}
+	.bt-form button{width:100%; margin:10px 0 0 0;}
+	
+	.block-show{width:90%;}
+	#login article{width:100%; padding:20px; display:table;}
+	.login-form{position:static;}
+	.progress{padding:0 100px;}
+	.gage .popup-show{width:100%; padding:145px 30px 30px 30px;}
+	.popup-show button{margin:0 0 3px 0;}
+	
+	.container-video{margin:0 0 10px 0;}
+	
+	.sidebar-second .search-video{width:100%; float:right; display:block !important; margin:0 0 20px 0;}
+	
+	.other-author{padding:20px 0 15px 15px;}
+	
+	.section-video-show{height:auto;}
+	.section-video-show{height:auto;}
+	.viewlike{width:100%; position:static; padding:0 0 0 30px; margin:5px 0; display:table;}
+	.viewlike p, .viewlike span{width:auto; float:left; margin:0 20px 0 0;}
+	
+	.item-list-video{width:48%;}
+	.item-list-video img{width:100%; height:180px;}
+	.item-picture-answer{padding:0 10px;}
+	.excaption ul{width:100%; position:fixed; z-index:20; top:50px; right:0; bottom:0; left:0; border-radius:0;}
+	.content-form h1.section-level{width:100%; padding:20px; }
+	
+	.search-form{padding:0 0 100px 0;}
+	.search-form .import-key{margin:0 0 60px 0;}
+	.select-Dictionary{top:70px;}
+	.search-form input[type="text"]{width:100%;}
+	.import-key button{right:12px; padding:10px; border-radius:50px; top:10px;}
+	
+	.popup-point{width:100%; position:fixed; top:50px; overflow:auto; height: auto;}
+	.popup-level{overflow: auto; position: fixed; top: 85px; width: 100%; height: auto;}
+
+	#myfirstchart{display:none;}
+	
+	.timeline-gage span.line-point-gage{height:3px; top:4px;}
+	.timeline-gage ul li{width:10px; height:10px; margin:0 10px 5px 0;}
+}
+
+@media only screen and (max-width : 540px) {
+    .menu-video {
+    margin-top:10px!important;
+    }
+	header{height:50px;}
+	.logo{top:12px; left:65px;}
+	.nav{width:50px; height:50px; right:0; top:0; position:static; background:rgba(0,0,0,0.1); float:left;	margin:0 51px 0 0;}
+	.front .nav{margin:0;}
+	.nav a#pull{position:static;}
+	.nav ul{position:absolute; left:0; top:50px; margin:0; padding:20px; background:#00968c; box-shadow:0 3px 3px rgba(0,0,0,0.3);}
+	.logo img{width:70%;}
+	
+	.nav-log{position:static; float:right; margin:10px 0 0 0;}
+	
+	.member{position:static; width:100%; float:left; padding:0 10px; background:#008c83;}
+	.ct-member{display:none; width:60%; height:auto; position:absolute; right:0; top:50px; background:#626262; padding:20px; border-radius:0 0 20px 20px; box-shadow:0 3px 3px rgba(0,0,0,0.3);}
+	a.pull-member{width:50px; height:50px; display:block; position:absolute; right:0; top:0; background:#ffb430 url('../images/member-nav-icon.png') no-repeat center center;}
+	.sub-account{display:inline-block; position:static; width:100%; border-radius:0; margin:10px 0 0 0; background:none; box-shadow:none;}
+	.sub-account span{display:none;}
+	.sub-account ul li a{color:#00c7ba; display:table; width:100%;}
+        .sub-account h3 {
+            color: white;
+        }
+	.account:hover .sub-account{display:inline-block;}
+	.account{width:100%; display:table; border-bottom:rgba(255,255,255,0.3) 1px solid; margin:0 0 10px; padding:0 0 10px 0;}
+	.ring, .level, .point{position:static;}
+	
+	.popup-ring{width:100%; position:fixed; top:50px; border-radius:0px; overflow:auto;}
+	.content-popup-ring .img-user{position:static;}
+	.content-popup-ring  i.cl-box{display:block;}
+	.main-chat .icon-chat{position:fixed; top:0; left:200px;}
+	.main-chat .wrap-chat{width:80%; position:fixed; left:50px; top:50px;}
+	.form-chat{width:100%; height:100%; position:fixed; top:0; bottom:0; left:0; right:0;}
+	
+	#slide{padding:0; background:#006d66; height:auto;}
+	#boxSlider{width:100%!important; height:auto; }
+	.bxslider li{padding:20px 0;}
+	.bxslider p{padding:20px 0 0 0;}
+	
+	#stated{padding:20px;}
+	#stated  aside{width:100%; padding:0;}
+	#stated aside img{width:100px; height:100px;}
+	#stated aside p{width:100%; clear:both;margin-top: 30px;text-align: center;margin-bottom: 15px;}
+	#stated button{position:static; margin:20px 0;}
+	#stated input{margin:20px 0;}
+	.box-vocabulary .chart{width:120px; height:120px; border-radius:120px;}
+	.summary-vocabulary{width:120px; top:-140px;}
+	
+	.box-vocabulary  img{width:100px; height:100px; border-radius:100px;}
+	.info-icon{left:12px; top:118px;}
+	.number-icon{left:45px; top:125px;}
+	.level-icon{left:78px; top:117px;}
+	.config{padding:20px;}
+	.rows-form-config label{width:100%; text-align:left;}
+	.rows-form-config input{width:100%; text-align:left;}
+	
+	.content-form .rows-form div.radiochoice{margin:0 0 2px 0;}
+	.result-Lesson{position:fixed; bottom:0;left:0; right:0; border-radius:0;  box-shadow:0 -2px 10px rgba(0,0,0,0.3); padding:15px 20px; z-index:2;}
+	.result-Lesson .button-fn button{font-size:18px;}
+	.progress{padding:0;}
+	.main-messenger{width:100%; position:fixed; top:50px; bottom:0; left:0; right:0; border-radius:0; background:#00847b;}
+	.ct-messenger{height:100%;}
+	.listen .help summary{left:-100px; border-radius:20px;}
+	.popup-dissemble{left:0; width:100%;}
+	.faq div{display:none;}
+	
+	.img-detail-slide, .content-detail{width:100%;}
+	.img-detail-slide button{width:100%;}
+	
+	.popup-show{width:100%; left:0;}
+	
+	.item-game h2{margin:0;}
+	
+	.game table td:nth-child(3), .game table td:nth-child(4), .game table td:nth-child(5), 
+	.game table th:nth-child(3), .game table th:nth-child(4), .game table th:nth-child(5)
+	{
+		display:none;
+	}
+	
+	.box-detail{width:100%;}
+	.accessories{display:none;}
+	
+	.flashcard{width:100%; padding:0; text-align:center;}
+	.download-audio{float:none;}
+	.flashcard a.btn-slide{font-size:14px; width:20px; height:30px; line-height:30px;}
+	.ct-eg{padding:20px;}
+	.flashcard a.fa-chevron-left{left:-30px;}
+	.flashcard a.fa-chevron-right{right:-30px;}
+	.ct-eg img{right:0;}
+	
+	.popup-level{width:100%; height:100vh; position:fixed; top:50px; left:0; right:0; bottom:0; z-index:30; display:block; overflow:auto;}
+	.content-popup-level{background:none; height:1000px;}
+	.point-ranking-level{display:block; }
+	.share-fb{bottom:90px;}
+	.ranking{background:url(../images/top-ranking.png) no-repeat center -10px;}
+	.popup-point .close-box, .popup-level .close-box{display:block;}
+	
+	.point-ranking{width:20px; height:20px; display:block; border-radius:20px; position:absolute; background:#ff9c00;}
+	.point-ranking01{left:47.2%; top:100px;}
+	.point-ranking02{left:47.2%; top:170px;}
+	.point-ranking03{left:47.2%; top:240px;}
+	.point-ranking04{left:47.2%; top:310px;}
+	.point-ranking05{left:47.2%; top:380px;}
+	.point-ranking06{left:47.2%; top:450px;}
+	.point-ranking07{left:47.2%; top:520px;}
+	.point-ranking08{left:47.2%; top:590px;}
+	.point-ranking09{left:47.2%; top:660px;}
+	.point-ranking10{left:47.2%; top:730px;}
+	
+	.user-ranking01{left:30%; top:715px;}
+	.user-ranking02{left:30%; top:585px;}
+	.user-ranking03{left:30%; top:455px;}
+	.user-ranking04{left:57%; top:325px;}
+	.user-ranking05{left:30%; top:195px;}
+	.user-ranking06{left:30%; top:65px;}
+	.user-ranking07{left:30%; top:-65px;}
+	.user-ranking08{left:30%; top:-195px;}
+	.user-ranking09{left:30%; top:-325px;}
+	.user-ranking10{left:30%; top:-455px;}
+	
+	.box-help{width:33%;}
+	.content-result{padding:30px 100px 30px 20px;}
+	.item-overcome{padding:0 0 30px 0;}
+	
+	.list-item-video{display:table; height:auto;}
+	.box-sidebar-second button{margin:0 0 0 40%;}
+	.item-list-video img{height:120px;}
+	.tabs label{padding:5px 10px; font-size:12px;}
+	.ct-popup-fr{width:100%; display:table; padding:30px 120px 30px 10px;}
+	
+	.box-show-video iframe{height:206px;}
+	.select-Dictionary .select select{font-size:18px; width:150%;}
+	.search-result{text-align:left; padding:0 20px;}
+	.box-search-result ul{margin:0 0 0 14px;}
+	.box-search-result ul ul{margin:0 0 0 14px;}
+	.box-search-result ul ul ul{margin:0 0 0 14px;}
+	
+	.section-question .cl-sec{width:100%;}
+}
+@media only screen and (max-width : 480px) {
+    .menu-video {
+    margin-top:10px!important;
+    }
+	.box-featured{width:100%;}
+	.item-vocabulary{width:100%;}
+	.box-featured h1.section-vocabulary{font-size:16px;}
+	.box-help{width:50%; padding:20px 5px;}
+	.popup-show{width:100%; left:0; right:0;}
+	.item-friend{width:50%;}
+	.timeline-gage ul li{width:10px; height:10px; margin:0 7px 5px 0;}
+	.progress{padding:0 30px; margin:20px 0 0 0;}
+	.progress-main{width:96%;}
+	.progress-main .value{right:-40px;}
+	.point{margin:0 0 0 15%;}
+	.summary-lesson{top:-168px;}
+    .box-lesson img{top:8px}
+    .box-lesson .chart label{display:none}
+
+    .box-vocabulary .box-sub {left: -30px; width: 200px;}
+    .box-vocabulary:nth-child(2n) .box-sub {left: auto; right: -90px;} 
+    /*.box-sub {left: -27px; width: 150px;}*/
+}
+@media only screen and (max-width : 400px) {
+    .menu-video {margin-top:10px!important;}
+	.gage-form{padding:10px 10px 20px 10px;}
+	.item-picture-answer img{padding:10px;}
+	.item-list-video img{height:100px;}
+	.tabs label{padding:5px; font-size:12px;}
+	.timeline-gage ul li{margin:0 3px 5px 0;}
+	
+	.box-lesson img{width:100px; height:100px;left:9px;top:9px}
+
+	.box-lesson .chart{width:120px; height:120px;}
+	.summary-lesson{top:-139px; left:8px;}
+	.school{left:16px; top:117px;}
+	.mind{left:48px; top:124px;}
+	.forget{left:80px; top:115px;}
+	.box-lesson .chart label{top:55px; left:25px;}
+	.box-vocabulary button{padding:8px 10px;}
+}
+@media only screen and (max-width : 360px) {
+      .box-lesson img{width:100px; height:100px;left:7px;top:9px}
+
+}
+@media only screen and (max-width : 320px) {
+	.box-lesson{width:95%; margin:2% 3% 10% 3%;}
+	.box-lesson .chart{width:150px; height:150px;}
+	.box-lesson img{width:130px; height:130px;top:8px;left: 9px;}
+	.summary-lesson{top:-168px; left:0;}
+	.school{left:24px; top:148px;}
+	.mind{left:62px; top:155px;}
+	.forget{left:100px; top:148px;}
+	.box-lesson .chart label{top:65px; left:85px;}
+	
+	.ct-member{width:80%;}
+	.nav-log ul li a{font-weight:normal; font-size:11px; padding:8px;}
+	
+	.box-help h4, .box-help p{font-size:12px;}
+	.search-friend div{width:auto;}
+	.img-author div{margin:0 0 10px 0;}
+	.img-author .scores{top:0;}
+	.search-friend div{width:100% !important;}
+	.search-friend input[type="text"]{position:static; width:100% !important;}
+	.content div{padding:10px}
+	
+	.user-ranking01{left:28%;}
+	.user-ranking02{left:28%;}
+	.user-ranking03{left:28%;}
+	.user-ranking04{left:57%;}
+	.user-ranking05{left:28%;}
+	.user-ranking06{left:28%;}
+	.user-ranking07{left:28%;}
+	.user-ranking08{left:28%;}
+	.user-ranking09{left:28%;}
+	.user-ranking10{left:28%;}
+	
+	.timeline-gage ul li{margin:0 2px 0 0;}
+	.box-show-video iframe{height:150px;}
+	
+	.box-vocabulary{margin:0 0 0 7%;}
+	.box-vocabulary img{width:90px; height:90px;}
+	.summary-vocabulary{top:-131px;}
+	.box-vocabulary .chart{width:110px; height:110px;}
+	.timeline-gage ul li{margin:0 2px 5px 0;}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
