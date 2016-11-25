@@ -151,7 +151,6 @@
     <Content Include="js\libs\swfobject.js" />
     <Content Include="js\MainViewController.js" />
     <Content Include="js\MindMap.js" />
-    <Content Include="js\MindMapData.js" />
     <Content Include="js\MindMapModel.js" />
     <Content Include="js\MindMaps.js" />
     <Content Include="js\MindMapServiceAPI.js" />
