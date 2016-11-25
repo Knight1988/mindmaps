@@ -115,8 +115,6 @@
         window.MindMapServiceAPI.load(doc.id, userId, function (document) {
             doc = mindmaps.Document.fromObject(document);
             mindmapModel.setDocument(doc);
-            editCommand.setEnabled(doc.canEdit);
-            saveDocumentCommand.setEnabled(doc.canEdit);
 
             testCommand.setData({
                 "data-id": doc.id,

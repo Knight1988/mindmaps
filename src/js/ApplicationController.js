@@ -105,32 +105,19 @@ mindmaps.ApplicationController = function () {
         var testCommand = commandRegistry.get(mindmaps.TestCommand);
 
         eventBus.subscribe(mindmaps.Event.DOCUMENT_CLOSED, function () {
-            saveDocumentCommand.setEnabled(false);
             closeDocumentCommand.setEnabled(false);
             exportCommand.setEnabled(false);
         });
 
-        eventBus.subscribe(mindmaps.Event.DOCUMENT_EDIT, function () {
-            saveDocumentCommand.setVisible(true);
-        });
-
-        eventBus.subscribe(mindmaps.Event.INITIALIZED, function () {
-            saveDocumentCommand.setVisible(false);
-        });
-
         eventBus.subscribe(mindmaps.Event.DOCUMENT_OPENED, function () {
-            saveDocumentCommand.setEnabled(true);
-            saveDocumentCommand.setVisible(false);
             closeDocumentCommand.setEnabled(true);
             exportCommand.setEnabled(true);
         });
 
         var userId = Querystring.getInt("id", 0);
         MindMapServiceAPI.loadDefaultDocument(userId, function (document) {
-            var editCommand = commandRegistry.get(mindmaps.EditCommand);
             var doc = mindmaps.Document.fromObject(document);
             mindmapModel.setDocument(doc);
-            editCommand.setEnabled(doc.canEdit);
             saveDocumentCommand.setEnabled(doc.canEdit);
 
             // test command

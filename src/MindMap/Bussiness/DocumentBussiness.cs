@@ -40,7 +40,10 @@ namespace MindMap.Bussiness
             doc = doc.LoadDocumentData();
             // check permission
             doc.CanEdit = doc.UserId == userId;
-            if (doc.CategoryId != null) doc.CanEdit = doc.CanEdit || PermissionBussiness.CanEdit(doc.CategoryId.Value, userId);
+            // check can edit
+            if (doc.CategoryId != null) { doc.CanEdit = doc.CanEdit || PermissionBussiness.CanEdit(doc.CategoryId.Value, userId);}
+            // check is private
+            doc.IsPrivate = doc.CategoryId == null && doc.UserId == userId;
             return doc;
         }
 
@@ -143,6 +146,7 @@ namespace MindMap.Bussiness
                     {
                         p.CanEdit = true;// enable edit for private documents
                         p.CanDelete = true;// enable delete for private documents
+                        p.IsPrivate = true;// this is private document
                         return p;
                     })
                     .ToList();

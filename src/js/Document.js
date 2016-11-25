@@ -20,6 +20,7 @@ mindmaps.Document = function () {
     this.canDelete = true;
     this.canRestore = false;
     this.autosave = false;
+    this.isPrivate = true;
 };
 
 /**
@@ -66,6 +67,7 @@ mindmaps.Document.fromObject = function (obj) {
     doc.canEdit = obj.canEdit;
     doc.canDelete = obj.canDelete;
     doc.canRestore = obj.canRestore;
+    doc.isPrivate = obj.isPrivate;
     doc.autosave = false;//obj.autosave;
 
     return doc;

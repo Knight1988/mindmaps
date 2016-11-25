@@ -1,4 +1,5 @@
-﻿using MindMap.DataAccess;
+﻿using System.Linq;
+using MindMap.DataAccess;
 using MindMap.Entity;
 using MindMap.Interface;
 
@@ -16,7 +17,7 @@ namespace MindMap.Bussiness
         public static bool IsVip(int userId)
         {
             // TODO: check if user is vip
-            return userId == 1;
+            return new []{1, 2}.Any(p => p == userId);
         }
 
         /// <summary>

@@ -36,6 +36,9 @@ namespace MindMap.Entity
         [JsonProperty("canEdit")]
         public bool CanEdit { get; set; }
 
+        [JsonProperty("isPrivate")]
+        public bool IsPrivate { get; set; }
+
         [JsonProperty("parentId")]
         public Guid? ParentId { get; set; }
 
